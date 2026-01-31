@@ -5,9 +5,9 @@ function HomePage() {
     return(
     <div>
       {/* Hero Section */}
-      <div className="bg-primary text-white text-center py-5" style={{ minHeight: '400px', display: 'flex', alignItems: 'center' }}>
+      <div className="text-white text-center py-5" style={{ backgroundColor: '#0d3b68', minHeight: '400px', display: 'flex', alignItems: 'center' }}>
         <div className="container">
-          <h1 className="display-3 fw-bold mb-4">Welcome to Grace Community Church</h1>
+          <h1 className="display-3 fw-bold mb-4">Welcome to Faith Independent Baptist Church</h1>
           <p className="lead mb-4">Join us in worship, fellowship, and service</p>
           <div className="d-flex gap-3 justify-content-center flex-wrap">
             <Link to="/services" className="btn btn-light btn-lg">Join Our Services</Link>
