@@ -9,7 +9,7 @@ function AboutPage() {
         <div className="col-md-8">
           <h3>Our Story</h3>
           <p className="lead">
-            Grace Community Church was founded in 1985 with a vision to create a welcoming space where people could encounter God's love and grow in their faith.
+            Faith Independent Baptist Church was founded in 1985 with a vision to create a welcoming space where people could encounter God's love and grow in their faith.
           </p>
           <p>
             For nearly four decades, we've been serving our community through worship, outreach, and discipleship. Our church family is diverse, vibrant, and committed to following Jesus together.

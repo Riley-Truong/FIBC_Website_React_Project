@@ -6,30 +6,34 @@ function Footer() {
       <div className="container">
         <div className="row">
           <div className="col-md-4">
-            <h5>Grace Community Church</h5>
+            <h5>Faith Independent Baptist Church</h5>
             <p>A place of worship, community, and faith.</p>
           </div>
           <div className="col-md-4">
             <h5>Contact Info</h5>
             <p>
-              123 Faith Street<br />
-              Your City, ST 12345<br />
-              Phone: (555) 123-4567<br />
-              Email: info@gracechurch.org
+              1099 Hwy 81 West<br />
+              McDonough, GA 30253<br />
+              Phone: (770) 957-9889<br />
+              Email: office@fibcministries.com
             </p>
           </div>
           <div className="col-md-4">
             <h5>Service Times</h5>
             <p>
-              Sunday: 9:00 AM & 11:00 AM<br />
-              Wednesday: 7:00 PM<br />
-              Prayer Meeting: Fridays 6:30 PM
+              Sunday<br />
+              9:30am - Sunday School (all ages)<br />
+              10:30am - Morning Service<br />
+              10:30am - Children's Churches (K4-6th)<br />
+              5:00pm -  Evening Service<br />
+              Wednesday<br />
+              7:00pm - Midweek Service/Prayer
             </p>
           </div>
         </div>
         <hr className="bg-white" />
         <div className="text-center">
-          <p>&copy; 2024 Grace Community Church. All rights reserved.</p>
+          <p>&copy; 2026 Faith Independent Baptist Church. All rights reserved.</p>
         </div>
       </div>
     </footer>
