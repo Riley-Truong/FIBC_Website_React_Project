@@ -61,7 +61,7 @@ function ContactPage() {
                 Location
               </h5>
               <p className="card-text">
-                Grace Community Church<br />
+                Faith Independent Baptist Church<br />
                 123 Faith Street<br />
                 Your City, ST 12345
               </p>
