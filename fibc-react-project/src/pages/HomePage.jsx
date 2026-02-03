@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 function HomePage() {
     return(
     <div>
-      {/* Hero Section */}
       <div className="text-white text-center py-5" style={{ backgroundColor: '#0d3b68', minHeight: '400px', display: 'flex', alignItems: 'center' }}>
         <div className="container">
           <h1 className="display-3 fw-bold mb-4">Welcome to Faith Independent Baptist Church</h1>
@@ -16,7 +15,6 @@ function HomePage() {
         </div>
       </div>
 
-      {/* Quick Info Cards */}
       <div className="container my-5">
         <div className="row g-4">
           <div className="col-md-4">
@@ -52,7 +50,6 @@ function HomePage() {
         </div>
       </div>
 
-      {/* Mission Statement */}
       <div className="bg-light py-5">
         <div className="container">
           <div className="row align-items-center">
