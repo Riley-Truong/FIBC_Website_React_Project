@@ -10,6 +10,7 @@ import MinistriesPage from './pages/MinistriesPage';
 import EventsPage from './pages/EventsPage';
 import SermonsPage from './pages/SermonsPage';
 import ContactPage from './pages/ContactPage';
+import GivingPage from './pages/GivingPage'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/events" element={<EventsPage />} />
             <Route path="/sermons" element={<SermonsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/giving" element={<GivingPage />} />
           </Routes>
         </main>
         <Footer />
