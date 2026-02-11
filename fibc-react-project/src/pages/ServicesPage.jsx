@@ -11,11 +11,11 @@ function ServicesPage() {
               <h4 className="mb-0">Sunday Morning Worship</h4>
             </div>
             <div className="card-body">
-              <h5 className="card-title">9:00 AM - Traditional Service</h5>
+              <h5 className="card-title">9:00 AM - Sunday School</h5>
               <p className="card-text">
                 Our traditional service features hymns, organ music, and expository preaching.
               </p>
-              <h5 className="card-title mt-4">11:00 AM - Contemporary Service</h5>
+              <h5 className="card-title mt-4">10:00 AM - Contemporary Service</h5>
               <p className="card-text">
                 Our contemporary service includes modern worship music and multimedia presentations.
               </p>
@@ -43,7 +43,7 @@ function ServicesPage() {
           </div>
         </div>
 
-        <div className="col-md-6">
+        {/* <div className="col-md-6">
           <div className="card h-100 shadow-sm">
             <div className="card-header bg-primary text-white">
               <h4 className="mb-0">Friday Prayer Meeting</h4>
@@ -55,9 +55,9 @@ function ServicesPage() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="col-md-6">
+        {/* <div className="col-md-6">
           <div className="card h-100 shadow-sm">
             <div className="card-header bg-primary text-white">
               <h4 className="mb-0">Special Services</h4>
@@ -71,7 +71,7 @@ function ServicesPage() {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="alert alert-info mt-5">

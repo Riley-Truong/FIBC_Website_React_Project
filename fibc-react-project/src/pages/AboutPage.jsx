@@ -29,7 +29,7 @@ function AboutPage() {
             <div className="col-md-6">
               <div className="card">
                 <div className="card-body">
-                  <h5>Pastor John Smith</h5>
+                  <h5>Pastor Randall Rickner</h5>
                   <p className="text-muted">Lead Pastor</p>
                   <p>Serving since 2010</p>
                 </div>
@@ -38,7 +38,7 @@ function AboutPage() {
             <div className="col-md-6">
               <div className="card">
                 <div className="card-body">
-                  <h5>Pastor Sarah Johnson</h5>
+                  <h5>Pastor Nathna Rickner</h5>
                   <p className="text-muted">Associate Pastor</p>
                   <p>Serving since 2015</p>
                 </div>
