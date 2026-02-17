@@ -43,9 +43,7 @@ function Navigation() {
             </div>
             <div className="">
                 <div>
-                    <MDBBtn className='m-1' style={{ backgroundColor: '#ed302f' }} href='https://youtube.com/channel/UCA2XmzXvAr0pLhzGSspAIOQ'>
-                        <MDBIcon fab icon='youtube' />
-                    </MDBBtn>
+                    <a href="https://youtube.com/channel/UCA2XmzXvAr0pLhzGSspAIOQ"><i class="bi bi-youtube"/></a>
                 </div>
             </div>
         </nav>
