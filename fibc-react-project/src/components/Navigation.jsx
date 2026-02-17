@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 
 function Navigation() {
     return(
