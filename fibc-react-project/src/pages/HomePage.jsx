@@ -1,13 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import fibcLogo from '../assets/fibc-logo-white-rust-383w.png'
 
 function HomePage() {
     return(
     <div>
       <div className="text-white text-center py-5" style={{ backgroundColor: '#0d3b68', minHeight: '400px', display: 'flex', alignItems: 'center' }}>
         <div className="container">
-          <h1 className="display-3 fw-bold mb-4">Welcome to Faith Independent Baptist Church</h1>
-          <p className="lead mb-4">Join us in worship, fellowship, and service</p>
+          <img src={fibcLogo} alt="fibc-logo-png" />
+          <p className="lead mb-4" style={{ padding: '35px 5px 10px 5px' }}>Join us in worship, fellowship, and service</p>
           <div className="d-flex gap-3 justify-content-center flex-wrap">
             <Link to="/services" className="btn btn-light btn-lg">Join Our Services</Link>
             <Link to="/contact" className="btn btn-outline-light btn-lg">Plan Your Visit</Link>

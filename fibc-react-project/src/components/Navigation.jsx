@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 
 function Navigation() {
     return(
-        <nav className="text-center justify-content-center navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav className="text-center justify-content-center navbar navbar-expand-lg navbar-dark" style={{backgroundColor: '#0d3b68'}}>
             <div className="navbar-brand" to="/">
                 <Link className="navbar-brand" to="/">
                     <i className="bi bi-church me-2"></i>
@@ -39,6 +40,13 @@ function Navigation() {
                     <Link className="nav-link" to="/giving">Give</Link>
                     </li>
                 </ul>
+                </div>
+            </div>
+            <div className="">
+                <div>
+                    <MDBBtn className='m-1' style={{ backgroundColor: '#ed302f' }} href='https://youtube.com/channel/UCA2XmzXvAr0pLhzGSspAIOQ'>
+                        <MDBIcon fab icon='youtube' />
+                    </MDBBtn>
                 </div>
             </div>
         </nav>
