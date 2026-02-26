@@ -1,0 +1,107 @@
+.nav-link-animated {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link-animated::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.nav-link-animated:hover::after {
+    width: 100%;
+}
+
+.nav-link-animated:hover {
+    color: #ffffff !important;
+    opacity: 1;
+}
+
+.nav-link-animated {
+    opacity: 0.85;
+}
+
+.nav-link-animated.active::after {
+    width: 100%;
+    background-color: #ffd700;
+}
+
+.social-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.social-link:hover {
+    color: #ff0000;
+    transform: scale(1.1);
+}
+
+.navbar-collapse {
+    transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        padding-top: 1rem;
+    }
+    
+    .nav-link-animated {
+        padding: 0.75rem 1rem;
+    }
+    
+    .nav-link-animated::after {
+        bottom: 0.5rem;
+    }
+    
+    .social-link {
+        padding: 1rem 0;
+        display: block;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse.show .nav-item {
+        animation: fadeInUp 0.3s ease forwards;
+        opacity: 0;
+    }
+    .navbar-collapse.show .nav-item:nth-child(1) { animation-delay: 0.05s; }
+    .navbar-collapse.show .nav-item:nth-child(2) { animation-delay: 0.1s; }
+    .navbar-collapse.show .nav-item:nth-child(3) { animation-delay: 0.15s; }
+    .navbar-collapse.show .nav-item:nth-child(4) { animation-delay: 0.2s; }
+    .navbar-collapse.show .nav-item:nth-child(5) { animation-delay: 0.25s; }
+    .navbar-collapse.show .nav-item:nth-child(6) { animation-delay: 0.3s; }
+    .navbar-collapse.show .nav-item:nth-child(7) { animation-delay: 0.35s; }
+    .navbar-collapse.show .nav-item:nth-child(8) { animation-delay: 0.4s; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler {
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.navbar-toggler:hover {
+    transform: scale(1.05);
+}
