@@ -21,7 +21,7 @@ function SermonsPage() {
                     A powerful message about faith and surrender.
                   </p>
                   <p className="card-text">
-                    <small className="text-muted">Pastor John Smith • January 26, 2026 • 2 Corinthians 5:7</small>
+                    <small className="text-muted">Pastor Randall Rickner • January 26, 2026 • 2 Corinthians 5:7</small>
                   </p>
                   <button className="btn btn-primary me-2">Watch</button>
                   <button className="btn btn-outline-primary">Listen</button>
@@ -45,7 +45,7 @@ function SermonsPage() {
                     Practical insights for a vibrant prayer life.
                   </p>
                   <p className="card-text">
-                    <small className="text-muted">Pastor Sarah Johnson • January 19, 2026 • James 5:16</small>
+                    <small className="text-muted">Pastor Randall Rickner • January 19, 2026 • James 5:16</small>
                   </p>
                   <button className="btn btn-primary me-2">Watch</button>
                   <button className="btn btn-outline-primary">Listen</button>
