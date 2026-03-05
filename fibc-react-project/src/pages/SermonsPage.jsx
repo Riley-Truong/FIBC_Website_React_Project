@@ -6,6 +6,7 @@ function SermonsPage() {
   const [liveStream, setLiveStream] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   const YOUTUBE_CHANNEL_ID = 'UCA2XmzXvAr0pLhzGSspAIOQ'
   const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
@@ -49,6 +50,14 @@ function SermonsPage() {
     if(data.items){
       setVideos(data.items);
     }
+  };
+
+  const openVideoModal = (video) => {
+    setSelectedVideo(video);
+  };
+
+  const closeVideoModal = () => {
+    setSelectedVideo(null);
   };
 
   const fetchLiveStream = async () => {
@@ -115,7 +124,7 @@ function SermonsPage() {
   return (
     <div className="container my-5">
       <h1 className="mb-4">Recent Sermons</h1>
-      <p className="lead mb-5">Watch or listen to our latest messages.</p>
+      <p className="lead mb-5">Watch our latest messages.</p>
       {liveStream && (
         <div className="mb-5">
           <div className="card border-danger">
@@ -155,7 +164,7 @@ function SermonsPage() {
           {videos.map((video) => (
             <div key={video.id.videoId} className="col-md-6 col-lg-4">
               <div className="card h-100 shadow-sm video-card">
-                <div className="position-relative video-thumbnail">
+                <div className="position-relative video-thumbnail" onClick={() => openVideoModal(video)} style={{ cursor: 'pointer' }}>
                   <img
                     src={video.snippet.thumbnails.medium.url}
                     className="card-img-top"
@@ -180,66 +189,62 @@ function SermonsPage() {
                   </p>
 
                   <div className="d-flex gap-2 mt-auto">
-                    <a
-                      href={`https://www.youtube.com/watch?v=${video.id.videoId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary btn-sm flex-grow-1"
-                    >
-                      <i className="bi bi-youtube"></i> Watch
-                    </a>
                     <button
-                      className="btn btn-outline-primary btn-sm"
-                      data-bs-toggle="modal"
-                      data-bs-target={`#videoModal${video.id.videoId.replace(/[^a-zA-Z0-9]/g, '')}`}
-                      title="Watch embedded"
+                      className="btn btn-primary btn-sm flex-grow-1"
+                      onClick={() => openVideoModal(video)}
                     >
-                      <i className="bi bi-fullscreen"></i>
+                      <i className="bi bi-play-fill"></i> Watch Here
                     </button>
-                  </div>
+                  </div>                
                 </div>
               </div>
-              <div 
-                className="modal fade" 
-                id={`videoModal${video.id.videoId.replace(/[^a-zA-Z0-9]/g, '')}`} 
-                tabIndex="-1"
-                aria-labelledby={`videoModalLabel${video.id.videoId.replace(/[^a-zA-Z0-9]/g, '')}`}
-                aria-hidden="true"
-              >
-                <div className="modal-dialog modal-xl modal-dialog-centered">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id={`videoModalLabel${video.id.videoId.replace(/[^a-zA-Z0-9]/g, '')}`}>
-                        {video.snippet.title}
-                      </h5>
-                      <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div className="modal-body p-0">
-                      <div className="ratio ratio-16x9">
-                        <iframe
-                          src={`https://www.youtube.com/embed/${video.id.videoId}`}
-                          title={video.snippet.title}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        ></iframe>
+              {selectedVideo && (
+                <div 
+                  className="modal fade show video-modal-wide"
+                  style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}
+                  onClick={closeVideoModal}
+                >
+                  <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5>{selectedVideo.snippet.title}</h5>
+                        <button className="btn-close" onClick={closeVideoModal}></button>
+                      </div>
+                      
+                      <div className="modal-body p-0">
+                        <div className="video-container-constrained">
+                          <iframe
+                            src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}`}
+                            allowFullScreen
+                            style={{
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              width: '100%',
+                              height: '82%',
+                              border: 'none',
+                            }}
+                          ></iframe>
+                        </div>
+                      </div>
+                      
+                      <div className="modal-footer">
+                        <small className="text-muted me-auto">
+                          <i className="bi bi-calendar3"></i> {formatDate(selectedVideo.snippet.publishedAt)}
+                        </small>
+                        <a
+                          href={`https://www.youtube.com/watch?v=${selectedVideo.id.videoId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-sm btn-outline-primary"
+                        >
+                          Open in YouTube
+                        </a>
                       </div>
                     </div>
-                    <div className="modal-footer">
-                      <small className="text-muted me-auto">
-                        <i className="bi"></i> {formatDate(video.snippet.publishedAt)}
-                      </small>
-                      <a
-                        href={`https://www.youtube.com/watch?v=${video.id.videoId}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-sm btn-outline-primary"
-                      >
-                        <i className="bi bi-box-arrow-up-right"></i> Open in YouTube
-                      </a>
-                    </div>
                   </div>
                 </div>
-              </div>
+              )}           
             </div>
           ))}
         </div>
