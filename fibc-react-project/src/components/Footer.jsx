@@ -25,13 +25,17 @@ function Footer() {
               9:30am - Sunday School (all ages)<br />
               10:30am - Morning Service<br />
               10:30am - Children's Churches (K4-6th)<br />
-              5:00pm -  Evening Service<br />
+              5:00pm -  Evening Service Wednesday<br />
               Wednesday<br />
-              7:00pm - Midweek Service/Prayer
+              7:00pm - Midweek Service/Prayer<br />
             </p>
           </div>
         </div>
-        <hr className="bg-white" />
+        <div className="col-md-4">
+          <a href="https://youtube.com/channel/UCA2XmzXvAr0pLhzGSspAIOQ"  target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Visit our YouTube channel">
+            <i className="bi bi-youtube fs-4"></i>
+          </a>
+        </div>
         <div className="text-center">
           <p>&copy; 2026 Faith Independent Baptist Church. All rights reserved.</p>
         </div>

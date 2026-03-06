@@ -42,36 +42,6 @@ function ServicesPage() {
             </div>
           </div>
         </div>
-
-        {/* <div className="col-md-6">
-          <div className="card h-100 shadow-sm">
-            <div className="card-header bg-primary text-white">
-              <h4 className="mb-0">Friday Prayer Meeting</h4>
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">6:30 PM - Prayer Gathering</h5>
-              <p className="card-text">
-                Come together with fellow believers to pray for our church, community, and world.
-              </p>
-            </div>
-          </div>
-        </div> */}
-
-        {/* <div className="col-md-6">
-          <div className="card h-100 shadow-sm">
-            <div className="card-header bg-primary text-white">
-              <h4 className="mb-0">Special Services</h4>
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Monthly & Seasonal Events</h5>
-              <ul>
-                <li>First Sunday: Communion Service</li>
-                <li>Easter & Christmas: Special Services</li>
-                <li>Monthly: Family Night Dinners</li>
-              </ul>
-            </div>
-          </div>
-        </div> */}
       </div>
 
       <div className="alert alert-info mt-5">
