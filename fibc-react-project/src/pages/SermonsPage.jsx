@@ -161,7 +161,7 @@ function SermonsPage() {
         </div>
       ) : (
         <div className="row g-4">
-          {videos.map((video) => (
+          {videos.slice(6,limit).map((video) => (
             <div key={video.id.videoId} className="col-md-6 col-lg-4">
               <div className="card h-100 shadow-sm video-card">
                 <div className="position-relative video-thumbnail" onClick={() => openVideoModal(video)} style={{ cursor: 'pointer' }}>
