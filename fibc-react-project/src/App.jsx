@@ -16,7 +16,6 @@ import GivingPage from './pages/GivingPage';
 function App() {
   return (
     <ErrorBoundary>
-      <Router>
         <div className="d-flex flex-column min-vh-100">
           <Navigation />
           <main className="flex-grow-1">
@@ -33,7 +32,6 @@ function App() {
           </main>
           <Footer />
         </div>
-      </Router>
     </ErrorBoundary>
   );
 }

@@ -1,0 +1,166 @@
+/* ========================================================================
+   DESIGN TOKENS — Faith Independent Baptist Church
+   ------------------------------------------------------------------------
+   This file is the single source of truth for the visual system. Every
+   component should reference these custom properties rather than hard-
+   coding values, so a future palette / type tweak happens in one place.
+
+   The palette is built from the existing FIBC logo (deep navy with a
+   warm rust accent), then extended with a cream background and supporting
+   neutrals. Rationale lives in /docs/DESIGN_DECISIONS.md.
+   ======================================================================== */
+
+:root {
+  /* -------- Color: brand -------- */
+  --color-navy-900: #0f1a2e;          /* deepest, used very sparingly */
+  --color-navy-800: #1a2842;          /* primary brand navy (matches logo) */
+  --color-navy-700: #243454;
+  --color-navy-600: #34466a;
+  --color-navy-500: #4a5d83;
+  --color-navy-100: #e3e7ee;          /* tinted backgrounds */
+  --color-navy-50:  #f1f3f7;
+
+  --color-rust-700: #8a4126;          /* hovered accent */
+  --color-rust-600: #b85c38;          /* primary accent (matches logo) */
+  --color-rust-500: #c97a5b;
+  --color-rust-100: #f5e3da;          /* soft tinted highlight */
+
+  /* -------- Color: neutrals -------- */
+  --color-cream:    #faf6f0;          /* page background — warm off-white */
+  --color-cream-2:  #f3ece0;          /* alt section background */
+  --color-paper:    #ffffff;          /* card surfaces */
+  --color-ink:      #2a2a2a;          /* body text */
+  --color-ink-soft: #4a4a4a;          /* secondary text */
+  --color-muted:    #6b6b6b;          /* tertiary / captions */
+  --color-line:     #e5dfd3;          /* dividers, subtle on cream */
+
+  /* -------- Color: semantic -------- */
+  --color-success: #4f7a4a;
+  --color-warning: #c98c1c;
+  --color-danger:  #a8392a;
+
+  /* -------- Color: aliases (semantic role names) -------- */
+  --bg-page:        var(--color-cream);
+  --bg-alt:         var(--color-cream-2);
+  --bg-surface:     var(--color-paper);
+  --bg-inverse:     var(--color-navy-800);
+  --text-primary:   var(--color-ink);
+  --text-secondary: var(--color-ink-soft);
+  --text-muted:     var(--color-muted);
+  --text-inverse:   var(--color-cream);
+  --accent:         var(--color-rust-600);
+  --accent-hover:   var(--color-rust-700);
+  --brand:          var(--color-navy-800);
+  --brand-hover:    var(--color-navy-700);
+
+  /* -------- Typography -------- */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Type scale (modular, ratio ~1.25 — major third). Sizes in rem. */
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;       /* base */
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-24: 1.5rem;
+  --fs-30: 1.875rem;
+  --fs-36: 2.25rem;
+  --fs-48: 3rem;
+  --fs-60: 3.75rem;
+  --fs-72: 4.5rem;
+
+  --lh-tight:   1.15;
+  --lh-snug:    1.3;
+  --lh-normal:  1.55;
+  --lh-relaxed: 1.7;
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+
+  --letter-tight:  -0.02em;
+  --letter-normal: 0;
+  --letter-wide:   0.02em;
+  --letter-wider:  0.08em;     /* small caps style */
+
+  /* -------- Spacing (4-pt scale) -------- */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.5rem;
+  --sp-6:  2rem;
+  --sp-7:  2.5rem;
+  --sp-8:  3rem;
+  --sp-9:  4rem;
+  --sp-10: 5rem;
+  --sp-11: 6rem;
+  --sp-12: 8rem;
+
+  /* Section vertical rhythm */
+  --section-y:    clamp(3.5rem, 7vw, 6rem);
+  --section-y-lg: clamp(5rem, 10vw, 8rem);
+
+  /* -------- Layout -------- */
+  --container-narrow: 760px;
+  --container-base:   1140px;
+  --container-wide:   1320px;
+
+  /* -------- Radius -------- */
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* -------- Shadows -------- */
+  --shadow-xs:  0 1px 2px rgba(15, 26, 46, 0.06);
+  --shadow-sm:  0 2px 6px rgba(15, 26, 46, 0.08);
+  --shadow:     0 6px 20px rgba(15, 26, 46, 0.10);
+  --shadow-md:  0 12px 32px rgba(15, 26, 46, 0.12);
+  --shadow-lg:  0 24px 60px rgba(15, 26, 46, 0.18);
+
+  /* -------- Motion -------- */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:    180ms;
+  --dur:         260ms;
+  --dur-slow:    480ms;
+
+  /* -------- Z-index scale -------- */
+  --z-base:    1;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 1000;
+  --z-modal:   2000;
+
+  /* -------- Bootstrap variable overrides --------
+     These let our tokens flow into anything Bootstrap renders without
+     us having to restyle each component manually. */
+  --bs-primary: var(--color-navy-800);
+  --bs-secondary: var(--color-rust-600);
+  --bs-body-bg: var(--color-cream);
+  --bs-body-color: var(--color-ink);
+  --bs-body-font-family: var(--font-body);
+  --bs-body-font-size: var(--fs-16);
+  --bs-body-line-height: var(--lh-normal);
+  --bs-link-color: var(--color-navy-800);
+  --bs-link-hover-color: var(--color-rust-600);
+  --bs-border-radius: var(--radius);
+  --bs-border-color: var(--color-line);
+}
+
+/* Respect users who've requested reduced motion. WCAG 2.3.3 / vestibular safety. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

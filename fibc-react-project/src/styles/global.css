@@ -1,0 +1,273 @@
+/* ========================================================================
+   GLOBAL STYLES — Typography, base elements, utility patterns
+   Loads after design-tokens.css and Bootstrap.
+   ======================================================================== */
+
+/* ---- Reset-ish basics on top of Bootstrap reboot ---- */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  line-height: var(--lh-normal);
+  color: var(--text-primary);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle paper texture for atmosphere — additive, no images required.
+   A faint radial gradient in the corners adds warmth without being noisy. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(60vmax 60vmax at 0% 0%, rgba(184, 92, 56, 0.05), transparent 60%),
+    radial-gradient(50vmax 50vmax at 100% 100%, rgba(26, 40, 66, 0.05), transparent 60%);
+}
+
+/* ---- Headings: serif, tight ---- */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semi);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--letter-tight);
+  color: var(--text-primary);
+  margin: 0 0 var(--sp-4) 0;
+}
+
+h1, .h1 { font-size: clamp(var(--fs-36), 5.5vw, var(--fs-72)); }
+h2, .h2 { font-size: clamp(var(--fs-30), 4.5vw, var(--fs-48)); }
+h3, .h3 { font-size: clamp(var(--fs-24), 3vw, var(--fs-36)); }
+h4, .h4 { font-size: var(--fs-24); }
+h5, .h5 { font-size: var(--fs-20); }
+h6, .h6 { font-size: var(--fs-18); }
+
+p {
+  margin: 0 0 var(--sp-4) 0;
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+p.lead {
+  font-size: var(--fs-20);
+  color: var(--text-primary);
+  line-height: var(--lh-normal);
+  font-weight: var(--fw-regular);
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease-out);
+}
+a:hover { color: var(--accent); }
+
+/* ---- Eyebrow: small caps style label above headings ---- */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--letter-wider);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--sp-3);
+}
+.eyebrow--inverse { color: var(--color-rust-500); }
+
+/* ---- Pull-quote / verse style for scripture ---- */
+.scripture {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(var(--fs-20), 2.5vw, var(--fs-30));
+  line-height: var(--lh-snug);
+  color: var(--text-primary);
+  border-left: 3px solid var(--accent);
+  padding: var(--sp-2) 0 var(--sp-2) var(--sp-5);
+  margin: var(--sp-6) 0;
+}
+.scripture cite {
+  display: block;
+  margin-top: var(--sp-3);
+  font-style: normal;
+  font-family: var(--font-body);
+  font-size: var(--fs-14);
+  letter-spacing: var(--letter-wide);
+  color: var(--text-muted);
+}
+
+/* ---- Buttons (custom; we don't use react-bootstrap defaults) ---- */
+.btn-fibc,
+.btn-fibc-outline,
+.btn-fibc-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font-family: var(--font-body);
+  font-weight: var(--fw-semi);
+  font-size: var(--fs-16);
+  letter-spacing: var(--letter-wide);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-fibc {
+  background: var(--brand);
+  color: var(--text-inverse);
+  border-color: var(--brand);
+}
+.btn-fibc:hover {
+  background: var(--brand-hover);
+  border-color: var(--brand-hover);
+  color: var(--text-inverse);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-fibc-outline {
+  background: transparent;
+  color: var(--brand);
+  border-color: var(--brand);
+}
+.btn-fibc-outline:hover {
+  background: var(--brand);
+  color: var(--text-inverse);
+  transform: translateY(-2px);
+}
+
+.btn-fibc-ghost {
+  background: transparent;
+  color: var(--accent);
+  border-color: transparent;
+  padding: 0.5rem 0.75rem;
+}
+.btn-fibc-ghost:hover {
+  color: var(--accent-hover);
+  background: var(--color-rust-100);
+}
+
+/* Inverse variant for dark backgrounds */
+.btn-fibc--inverse {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-inverse);
+}
+.btn-fibc--inverse:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* ---- Cards ---- */
+.fibc-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+.fibc-card--hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---- Section helpers ---- */
+.section {
+  padding: var(--section-y) 0;
+}
+.section--lg {
+  padding: var(--section-y-lg) 0;
+}
+.section--alt {
+  background: var(--bg-alt);
+}
+.section--inverse {
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+}
+.section--inverse h1,
+.section--inverse h2,
+.section--inverse h3,
+.section--inverse p {
+  color: var(--text-inverse);
+}
+.section--inverse p { color: rgba(250, 246, 240, 0.85); }
+
+/* ---- Container variants ---- */
+.container-narrow { max-width: var(--container-narrow); margin-inline: auto; padding-inline: var(--sp-4); }
+.container-base   { max-width: var(--container-base);   margin-inline: auto; padding-inline: var(--sp-4); }
+.container-wide   { max-width: var(--container-wide);   margin-inline: auto; padding-inline: var(--sp-4); }
+
+/* ---- Visually hidden (a11y) ---- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* ---- Skip link (a11y) ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: var(--sp-3);
+  background: var(--brand);
+  color: var(--text-inverse);
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--radius);
+  z-index: var(--z-modal);
+  font-weight: var(--fw-semi);
+}
+.skip-link:focus {
+  left: var(--sp-3);
+  color: var(--text-inverse);
+}
+
+/* ---- Focus ring (consistent across the site) ---- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Image defaults ---- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---- Decorative divider used between sections ---- */
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  color: var(--accent);
+  margin: var(--sp-6) 0;
+}
+.divider-ornament::before,
+.divider-ornament::after {
+  content: '';
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+}

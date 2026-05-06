@@ -1,6 +1,7 @@
-import React from 'react';
+import { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +12,7 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    return { hasError : true }
+    return { hasError : true , error}
   }
 
   componentDidCatch(error, errorInfo) {
@@ -33,41 +34,25 @@ class ErrorBoundary extends React.Component {
   render() {
     if(this.state.hasError){
       return (
-        <div className="container my-5">
-          <div className="alert alert-danger" role="alert">
-            <h4 className="alert-heading">
-              <i className="bi bi-exclamation-triangle-fill me-2"></i>
-              Something went wrong
-            </h4>
-            <p>We're sorry, but something unexpected happened. Please try refreshing the page.</p>
-            {process.env.NODE_ENV === 'development' && this.state.error && (
-              <details className="mt-3">
-                <summary style={{ cursor: 'pointer' }}>
-                  Error details (visible in development mode only)
-                </summary>
-                <pre className="mt-2 p-3 bg-light rounded">
-                  <strong>Error:</strong> {this.state.error.toString()}
-                  {this.state.errorInfo && (
-                    <>
-                      <br /><br />
-                      <strong>Component Stack:</strong>
-                      {this.state.errorInfo.componentStack}
-                    </>
-                  )}
-                </pre>
-              </details>
-            )}
-            
-            <hr />
-            <div className="d-flex gap-2">
-              <a href="/" className="btn btn-primary ">
-                <i className="bi bi-house me-2"></i>
-                Go to Homepage
-              </a>
+        <main style={{padding: '6rem 1rem', textAlign: 'center', minHeight: '60vh'}}>
+          <div style={{maxWidth: 560, margin: '0 auto'}}>
+            <p className="eyebrow">Something Went Wrong</p>
+            <h1>We hit a snag</h1>
+            <p>
+              An unexpected error stopped the page from loading. We're sorry for the
+              interruption — please try refreshing, or head back to the homepage.
+            </p>
+            <div style={{display:'flex', gap:'0.75rem', justifyContent:'center', marginTop:'1.5rem'}}>
+              <button className="btn-fibc" onClick={() => window.location.reload()}>
+                Refresh Page
+              </button>
+              <Link to="/" className="btn-fibc-outline" onClick={this.resetError}>
+                Go Home
+              </Link>
             </div>
           </div>
-        </div>      
-        );
+        </main>
+      );
     }
     return this.props.children;
   }
