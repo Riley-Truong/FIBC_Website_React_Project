@@ -65,6 +65,26 @@ function Footer() {
           <p className="fibc-footer__copy">
             &copy; {year} Faith Independent Baptist Church. All rights reserved.
           </p>
+          <div className="col-md-4">
+            <h5>Service Times</h5>
+            <p>
+              Sunday<br />
+              9:30am - Sunday School (all ages)<br />
+              10:30am - Morning Service<br />
+              10:30am - Children's Churches (K4-6th)<br />
+              5:00pm -  Evening Service Wednesday<br />
+              Wednesday<br />
+              7:00pm - Midweek Service/Prayer<br />
+            </p>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <a href="https://youtube.com/channel/UCA2XmzXvAr0pLhzGSspAIOQ"  target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Visit our YouTube channel">
+            <i className="bi bi-youtube fs-4"></i>
+          </a>
+        </div>
+        <div className="text-center">
+          <p>&copy; 2026 Faith Independent Baptist Church. All rights reserved.</p>
         </div>
       </div>
     </footer>

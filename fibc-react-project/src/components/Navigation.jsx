@@ -63,11 +63,6 @@ function Navigation() {
                             </Link>
                         </li>
                     </ul>
-                    <div className="ms-3">
-                        <a href="https://youtube.com/channel/UCA2XmzXvAr0pLhzGSspAIOQ"  target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Visit our YouTube channel">
-                            <i className="bi bi-youtube fs-4"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </nav>

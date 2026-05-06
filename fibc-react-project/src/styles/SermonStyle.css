@@ -1,0 +1,229 @@
+.video-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.video-thumbnail {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.video-thumbnail img {
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover .video-thumbnail img {
+  transform: scale(1.1);
+}
+
+.video-overlay {
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.video-card:hover .video-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.video-overlay i {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s ease;
+}
+
+.video-card:hover .video-overlay i {
+  opacity: 0.9;
+  transform: scale(1);
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.modal-content {
+  border: none;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.modal-body {
+  background: #000;
+}
+
+.ratio-16x9 {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+.ratio-16x9 iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.spinner-border {
+  animation: spinner-border 0.75s linear infinite;
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 3em;
+}
+
+.card.border-danger {
+  border-width: 2px !important;
+}
+
+@media (max-width: 768px) {
+  .video-card {
+    margin-bottom: 1rem;
+  }
+  
+  .video-thumbnail img {
+    height: 180px !important;
+  }
+  
+  .video-overlay i {
+    font-size: 3rem !important;
+  }
+  
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-lg-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.alert {
+  border-left: 4px solid;
+}
+
+.alert-danger {
+  border-left-color: #dc3545;
+}
+
+.alert-info {
+  border-left-color: #0dcaf0;
+}
+
+.card-footer {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.row.g-4 > [class*='col-'] {
+  display: flex;
+}
+
+.card.h-100 {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body {
+  flex: 1;
+}
+
+.video-modal-wide .modal-dialog {
+  max-width: 90%;
+  width: 90%;
+  animation: modalFadeIn 0.3s ease-out;
+  animation: modalSlideIn 0.3s ease-out;
+  transition: opacity 0.15s linear;
+  transition: transform 0.3s ease-out;
+}
+
+.video-modal-wide .modal-content {
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.video-modal-wide .modal-body {
+  max-height: calc(90vh - 120px);
+  overflow: hidden;
+}
+
+.video-container-constrained {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  max-height: 70vh;
+}
+
+.video-container-constrained iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-50px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}

@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import pastorNat from '../assets/nathan_rickner.png';
+import pastorGab from '../assets/gabriel_vazquez.png';
+import pastorRan from '../assets/randall_rickner.png';
+
 
 function AboutPage() {
   return (
@@ -49,26 +53,33 @@ function AboutPage() {
 
           <h3 className="mt-5">Our Leadership</h3>
           <div className="row g-3 mt-2">
-            <div className="col-md-6">
+            <div className="col-md-4">
               <div className="card">
+                <div className="card-body">
+                  <img src={pastorRan} alt="Pastor Randall Rickner"/>
+                </div>
                 <div className="card-body">
                   <h5>Pastor Randall Rickner</h5>
                   <p className="text-muted">Pastor</p>
-                  <p>Serving since 2020</p>
                 </div>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-4">
               <div className="card">
+                <div className="card-body">
+                  <img src={pastorNat} alt="Pastor Nathna Rickner"/>
+                </div>
                 <div className="card-body">
                   <h5>Pastor Nathna Rickner</h5>
                   <p className="text-muted">Associate Pastor</p>
-                  <p>Serving since 2020</p>
                 </div>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-4">
               <div className="card">
+                <div className="card-body">
+                  <img src={pastorGab} alt="Pastor Gabriel Vazquez"/>
+                </div>
                 <div className="card-body">
                   <h5>Gabriel Vazquez</h5>
                   <p className="text-muted">Spanish Pastor</p>
