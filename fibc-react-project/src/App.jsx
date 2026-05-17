@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -12,26 +12,34 @@ import EventsPage from './pages/EventsPage';
 import SermonsPage from './pages/SermonsPage';
 import ContactPage from './pages/ContactPage';
 import GivingPage from './pages/GivingPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
     <ErrorBoundary>
-        <div className="d-flex flex-column min-vh-100">
-          <Navigation />
-          <main className="flex-grow-1">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/ministries" element={<MinistriesPage />} />
-              <Route path="/events" element={<EventsPage />} />
-              <Route path="/sermons" element={<SermonsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/giving" element={<GivingPage />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+      <a href="#main" className="skip-link">Skip to content</a>
+      <ScrollToTop />
+      <Navigation />
+      <main id="main">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          {/* <Route path="/staff" element={<StaffPage />} /> */}
+          {/* <Route path="/beliefs" element={<BeliefsPage />} /> */}
+          {/* <Route path="/faq" element={<FAQPage />} />
+          <Route path="/visit" element={<VisitPage />} /> */}
+          <Route path="/services" element={<ServicesPage />} />
+          {/* <Route path="/salvation" element={<SalvationPage />} /> */}
+          {/* <Route path="/next-steps" element={<NextStepsPage />} /> */}
+          <Route path="/ministries" element={<MinistriesPage />} />
+          <Route path="/sermons" element={<SermonsPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/giving" element={<GivingPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+      <Footer />
     </ErrorBoundary>
   );
 }

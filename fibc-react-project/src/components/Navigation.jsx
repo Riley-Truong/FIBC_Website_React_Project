@@ -1,72 +1,203 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/NavigationStyle.css';
+import{ useState, useEffect, useRef } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import './Navigation.css';
+
+const NAV_GROUPS = [
+    {
+        lable: 'About',
+        items: [
+            { to: '/about', label: 'Our Church'},
+            { to: '/staff', label: 'Pastor & Staff'},
+            { to: '/beliefs', label: 'What We Believe'},
+            { to: '/faq', label: 'FAQ'},
+        ],
+    },
+    {
+        lable: 'Visit',
+        items: [
+            { to: '/visit', label: 'Plan Your Visit'},
+            { to: '/services', label: 'Service Times'},
+            { to: '/salvation', label: 'Salvation'},
+            { to: '/next-steps', label: 'Next Steps'},
+        ],
+    },
+];
+
+const NAV_LINKS = [
+    { to: '/ministries', label: 'Ministries' },
+    { to: '/sermons', label: 'Sermons' },
+    { to: '/events', label: 'Events' },
+    { to: '/contact', label: 'Contact' },
+];
 
 function Navigation() {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
-    const closeMenu = () => {
-        setIsOpen(false);
-    };
+    const [scrolled, setScrolled] = useState(false);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState(null);
+    const location = useLocation();
+    const drawerRef = useRef(null);
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 24);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    useEffect(() => { setDrawerOpen(false); setOpenDropdown(null); }, [location.pathname]);
+
+    useEffect(() => {
+        document.body.style.overflow = drawerOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [drawerOpen]);
+
+    useEffect(() => {
+        const onKey = (e) => { if (e.key === 'Escape') { setOpenDropdown(null); setDrawerOpen(false); } };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, []);
+
     return(
-        <nav className="navbar navbar-expand-lg navbar-dark" style={{backgroundColor: '#0d3b68'}}>
-            <div className="container-fluid">
-                <Link className="navbar-brand" to="/" onClick={closeMenu}>
-                    <i className="bi bi-church me-2"></i>
-                    Faith Independent Baptist Church
-                </Link>
-                <button className="navbar-toggler" type="button" onClick={toggleMenu} aria-controls="navbarNav" aria-expanded={isOpen} aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>                
-                <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
-                    <ul className="navbar-nav ms-auto">
-                        <li className="nav-item">
-                            <Link className="nav-link nav-link-animated" to="/" onClick={closeMenu}>
-                                Home
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link nav-link-animated" to="/about" onClick={closeMenu}>
-                                About
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link nav-link-animated" to="/services" onClick={closeMenu}>
-                                Services
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link nav-link-animated" to="/ministries" onClick={closeMenu}>
-                                Ministries
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link nav-link-animated" to="/events" onClick={closeMenu}>
-                                Events
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link nav-link-animated" to="/sermons" onClick={closeMenu}>
-                                Sermons
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link nav-link-animated" to="/contact" onClick={closeMenu}>
-                                Contact
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link nav-link-animated nav-link-give" to="/giving" onClick={closeMenu}>
-                                Give
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    );
+    <>
+      <a href="#main" className="skip-link">Skip to main content</a>
+
+      <header className={`fibc-nav ${scrolled ? 'fibc-nav--scrolled' : ''}`}>
+        <div className="container-wide fibc-nav__inner">
+          <Link to="/" className="fibc-nav__brand" aria-label="FIBC home">
+            <span className="fibc-nav__brand-text">
+              <span className="fibc-nav__brand-name">Faith Independent</span>
+              <span className="fibc-nav__brand-sub">Baptist Church</span>
+            </span>
+          </Link>
+
+          <nav className="fibc-nav__desktop" aria-label="Primary">
+            <ul className="fibc-nav__list">
+              <li>
+                <NavLink to="/" end className={({isActive}) => `fibc-nav__link ${isActive ? 'is-active' : ''}`}>
+                  Home
+                </NavLink>
+              </li>
+
+              {NAV_GROUPS.map(group => (
+                <li
+                  key={group.label}
+                  className="fibc-nav__dropdown"
+                  onMouseEnter={() => setOpenDropdown(group.label)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <button
+                    className="fibc-nav__link fibc-nav__dropdown-trigger"
+                    aria-expanded={openDropdown === group.label}
+                    aria-haspopup="true"
+                    onFocus={() => setOpenDropdown(group.label)}
+                    onClick={() => setOpenDropdown(openDropdown === group.label ? null : group.label)}
+                  >
+                    {group.label}
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                      <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  <AnimatePresence>
+                    {openDropdown === group.label && (
+                      <motion.ul
+                        className="fibc-nav__dropdown-menu"
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        {group.items.map(item => (
+                          <li key={item.to}>
+                            <NavLink
+                              to={item.to}
+                              className={({isActive}) => `fibc-nav__dropdown-item ${isActive ? 'is-active' : ''}`}
+                            >
+                              {item.label}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                </li>
+              ))}
+
+              {NAV_LINKS.map(link => (
+                <li key={link.to}>
+                  <NavLink to={link.to} className={({isActive}) => `fibc-nav__link ${isActive ? 'is-active' : ''}`}>
+                    {link.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+
+            <Link to="/giving" className="btn-fibc fibc-nav__cta">Give</Link>
+          </nav>
+
+          {/* Mobile hamburger */}
+          <button
+            className={`fibc-nav__hamburger ${drawerOpen ? 'is-open' : ''}`}
+            aria-expanded={drawerOpen}
+            aria-controls="mobile-drawer"
+            aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+            onClick={() => setDrawerOpen(o => !o)}
+          >
+            <span /><span /><span />
+          </button>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {drawerOpen && (
+          <>
+            <motion.div
+              className="fibc-nav__backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setDrawerOpen(false)}
+            />
+            <motion.aside
+              ref={drawerRef}
+              id="mobile-drawer"
+              className="fibc-nav__drawer"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              aria-label="Mobile navigation"
+            >
+              <nav className="fibc-nav__drawer-content">
+                <NavLink to="/" end className="fibc-nav__drawer-link">Home</NavLink>
+
+                {NAV_GROUPS.map(group => (
+                  <details key={group.label} className="fibc-nav__drawer-group">
+                    <summary className="fibc-nav__drawer-link">{group.label}</summary>
+                    <div className="fibc-nav__drawer-sub">
+                      {group.items.map(item => (
+                        <NavLink key={item.to} to={item.to} className="fibc-nav__drawer-sublink">
+                          {item.label}
+                        </NavLink>
+                      ))}
+                    </div>
+                  </details>
+                ))}
+
+                {NAV_LINKS.map(link => (
+                  <NavLink key={link.to} to={link.to} className="fibc-nav__drawer-link">
+                    {link.label}
+                  </NavLink>
+                ))}
+
+                <Link to="/giving" className="btn-fibc fibc-nav__drawer-cta">Give</Link>
+              </nav>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }
 
 export default Navigation;
