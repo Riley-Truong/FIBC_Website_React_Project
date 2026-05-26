@@ -65,6 +65,7 @@ function Navigation() {
       <header className={`fibc-nav ${scrolled ? 'fibc-nav--scrolled' : ''}`}>
         <div className="container-wide fibc-nav__inner">
           <Link to="/" className="fibc-nav__brand" aria-label="FIBC home">
+            <img src="/icon.png" alt="FIBC Logo" className='fibc-nav__brand-mark' width="32" height="52" />
             <span className="fibc-nav__brand-text">
               <span className="fibc-nav__brand-name">Faith Independent</span>
               <span className="fibc-nav__brand-sub">Baptist Church</span>

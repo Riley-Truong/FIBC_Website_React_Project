@@ -1,0 +1,175 @@
+/* ===== Hero ===== */
+.home-hero {
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(4rem, 10vw, 8rem);
+  position: relative;
+  overflow: hidden;
+}
+.home-hero::before {
+  /* Soft warm wash behind the hero */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(40vmax 40vmax at 90% 10%, rgba(184, 92, 56, 0.10), transparent 65%),
+    radial-gradient(50vmax 50vmax at 10% 110%, rgba(26, 40, 66, 0.08), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.home-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.home-hero__title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--sp-5);
+}
+.home-hero__title em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+.home-hero__subtitle { max-width: 56ch; margin-bottom: var(--sp-6); }
+.home-hero__ctas { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+
+.home-hero__card {
+  background: var(--bg-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  box-shadow: var(--shadow);
+  position: relative;
+  isolation: isolate;
+}
+.home-hero__card::before {
+  content: '';
+  position: absolute;
+  top: -12px; left: 24px;
+  width: 48px; height: 48px;
+  background: var(--accent);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.85;
+}
+.home-hero__card-title {
+  font-size: var(--fs-30);
+  margin-bottom: var(--sp-4);
+}
+.home-hero__card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  font-size: var(--fs-16);
+}
+.home-hero__card-list strong { font-family: var(--font-display); color: var(--brand); margin-right: var(--sp-3); }
+.home-hero__card-meta { font-size: var(--fs-14); color: var(--text-muted); margin: 0; }
+
+/* ===== Services strip ===== */
+.home-services {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--sp-6);
+}
+.home-services__day {
+  background: var(--bg-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+}
+.home-services__day-title {
+  font-size: var(--fs-24);
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--color-line);
+  color: var(--brand);
+}
+.home-services__sessions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.home-services__session {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: var(--sp-4);
+  row-gap: 0;
+}
+.home-services__time {
+  grid-row: 1 / span 2;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-20);
+  color: var(--accent);
+  align-self: start;
+}
+.home-services__name {
+  font-weight: var(--fw-semi);
+  color: var(--text-primary);
+}
+.home-services__note {
+  font-size: var(--fs-14);
+  color: var(--text-muted);
+}
+
+/* ===== Beliefs section ===== */
+.home-beliefs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+.home-beliefs .scripture {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-7);
+}
+
+/* ===== Ministries grid ===== */
+.home-ministries {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sp-4);
+}
+.home-ministries__card-title {
+  font-size: var(--fs-20);
+  margin-bottom: var(--sp-3);
+  color: var(--brand);
+}
+.home-ministries__card-desc { font-size: var(--fs-14); margin-bottom: var(--sp-3); }
+.home-ministries__card-meets { font-size: var(--fs-14); color: var(--text-muted); margin: 0; }
+.home-ministries__card-meets strong { color: var(--text-primary); }
+
+/* ===== CTA ===== */
+.home-cta {
+  padding: var(--section-y-lg) 0;
+  position: relative;
+}
+.home-cta__title {
+  font-size: clamp(var(--fs-30), 4vw, var(--fs-48));
+  margin-bottom: var(--sp-4);
+}
+.home-cta__sub { color: rgba(250, 246, 240, 0.85); margin-bottom: var(--sp-6); font-size: var(--fs-18); }
+.home-cta__buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-3); }
+
+/* Responsive */
+@media (max-width: 991px) {
+  .home-hero__inner { grid-template-columns: 1fr; }
+  .home-services { grid-template-columns: 1fr; }
+  .home-beliefs { grid-template-columns: 1fr; }
+}
+@media (max-width: 575px) {
+  .home-hero__ctas .btn-fibc,
+  .home-hero__ctas .btn-fibc-outline { flex: 1 1 auto; justify-content: center; }
+}

@@ -38,17 +38,20 @@
   margin-right: auto;
 }
 .fibc-nav__brand-mark {
-  display: grid;
-  place-items: center;
-  width: 42px; height: 42px;
-  background: var(--brand);
-  color: var(--accent);
-  border-radius: var(--radius);
-  font-family: var(--font-display);
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-24);
-  line-height: 1;
+  height: 44px;
+  width: auto;
+  object-fit: contain;
   flex-shrink: 0;
+  display: block;
+}
+
+.fibc-nav.is-scrolled .fibc-nav__brand-mark {
+  height: 36px;
+  transition: height var(--motion-md) var(--ease);
+}
+
+@media (max-width: 640px) {
+  .fibc-nav__brand-mark { height: 36px; }
 }
 .fibc-nav__brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .fibc-nav__brand-name {
