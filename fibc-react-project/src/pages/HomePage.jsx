@@ -6,7 +6,7 @@ import SEO from '../components/shared/SEO';
 import SectionHeading from '../components/shared/SectionHeading';
 import { services } from '../data/services';
 import { ministries } from '../data/ministries';
-import './HomePage.css';
+import '../styles/HomePage.css';
 
 function HomePage() {
     return(

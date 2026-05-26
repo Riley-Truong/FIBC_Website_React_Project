@@ -1,5 +1,5 @@
 import {motion} from 'framer-motion';
-import './PageHero.css';
+import '../../styles/PageHero.css';
 
 function PageHero({eyebrow, title, subtitle, variant = 'default'}) {
     return(

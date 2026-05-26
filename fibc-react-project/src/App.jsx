@@ -12,6 +12,7 @@ import EventsPage from './pages/EventsPage';
 import SermonsPage from './pages/SermonsPage';
 import ContactPage from './pages/ContactPage';
 import GivingPage from './pages/GivingPage';
+import StaffPage from './pages/StaffPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
-          {/* <Route path="/staff" element={<StaffPage />} /> */}
+          <Route path="/staff" element={<StaffPage />} />
           {/* <Route path="/beliefs" element={<BeliefsPage />} /> */}
           {/* <Route path="/faq" element={<FAQPage />} />
           <Route path="/visit" element={<VisitPage />} /> */}

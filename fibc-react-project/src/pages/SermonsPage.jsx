@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import '../styles/SermonStyle.css';
 
 function SermonsPage() {
   const [videos, setVideos] = useState([]);
