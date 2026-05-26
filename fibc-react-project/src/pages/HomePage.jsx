@@ -91,6 +91,10 @@ function HomePage() {
                 <SectionHeading eyebrow="Doctrine" title="What We Believe" subtitle = "We believe the Holy Scriptures of the Old and New Testaments to be the verbally (every word) and plenarily (completely) inspired Word of God. The Scriptures are inerrant, infallible and God-breathed, and therefore are the final authority for faith and life. The sixty-six books of the Old and New Testaments are the complete and divine revelation of God to man (II Timothy 3:16-17; II Peter 1:20-21). [Note: For reasons of textual reliability, we promote and use the King James Version of the Bible in our English-speaking services.]"/>
                 <Link to="/beliefs" className="btn-fibc-outline">Read our full doctrinal statement</Link>
               </div>
+              <blockquote className='scripture'>
+                All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness
+                <cite>II Timothy 3:16</cite>
+              </blockquote>
             </div>
           </div>
         </section>
@@ -119,6 +123,21 @@ function HomePage() {
             </motion.div>
             <div className="text-center" style={{marginTop: 'var(--sp-7)'}}>
               <Link to="/ministries" className="btn-fibc-outline">See all ministries</Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="section--inverse home-cta">
+          <div className="container-narrow text-center">
+            <span className="eyebrow eyebrow--inverse">Take a step</span>
+            <h2 className="home-cta__title">Whatever you’re looking for, start here.</h2>
+            <p className="home-cta__sub">
+              Plan your first visit, watch a recent sermon, or send us a question.
+            </p>
+            <div className="home-cta__buttons">
+              <Link to="/visit" className="btn-fibc-ghost">Plan your visit</Link>
+              <Link to="/sermons" className="btn-fibc-ghost">Watch a sermon</Link>
+              <Link to="/contact" className="btn-fibc-ghost">Contact us</Link>
             </div>
           </div>
         </section>
