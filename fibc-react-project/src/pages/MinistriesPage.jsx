@@ -1,128 +1,95 @@
-import React from 'react';
+import {useRef, useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import { ministries } from '../data/ministries';
+import {motion} from 'framer-motion';
+import SEO from '../components/shared/SEO';
+import PageHero from '../components/shared/PageHero';
+import SectionHeading from '../components/shared/SectionHeading';
+import '../styles/MinistriesPage.css';
 
 function MinistriesPage() {
+  const dialogRef = useRef(null);
+  const [activeMinistry, setActiceMinistry] = useState(null);
+
+  const openModal = (ministry) => {
+    setActiceMinistry(ministry);
+    dialogRef.current?.showModal();
+  };
+
+  const closeModal = () => {
+    dialogRef.current?.close();
+  };
+
+  const handleDialogClose = () => {
+    setActiceMinistry(null);
+  };
+
+  const handleDialogClick = (e) => {
+    if(e.target === dialogRef.current) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    if(activeMinistry){
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeMinistry]);
+
   return (
-    <div className="container my-5">
-      <h1 className="mb-4">Our Ministries</h1>
-      <p className="lead mb-5">Get involved and grow in your faith through our various ministry opportunities.</p>
-      
-      <div className="row g-4">
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h4 className="card-title text-primary">Children's Ministry</h4>
-              <p className="card-text">
-                Nurturing young hearts with Bible stories, worship, and age-appropriate activities. 
-                Programs for infants through 5th grade.
-              </p>
+    <>
+    <SEO title="Ministries" description="Discover the ministries at Faith Independent Baptist Church"/>
+    <PageHero section="Get Involved" title="A Place For You" subtitle="The Christian life was never meant to be lived alone. Here's where you can grow, serve, and belong."/>
+
+      <section className="ministries-section">
+        <div className="container-base">
+          <motion.div className="ministries-grid" initial="hidden" whileInView="show" viewport={{ once: true }} variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } }, }}>
+            {ministries.map((ministry) => (
+              <motion.article key={ministry.id} className="ministry-card" variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },},}}>
+                <div className="ministry-card__media">
+                  <img src={ministry.image} alt="" loading="lazy" />
+                </div>
+                <div className="ministry-card__body">
+                  <h2 className="ministry-card__title">{ministry.name}</h2>
+                  <button type="button" className="btn-fibc btn-fibc--secondary ministry-card__button" onClick={() => openModal(ministry)} aria-label={`See description of ${ministry.name}`}>
+                    See Description
+                  </button>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <dialog ref={dialogRef} className="ministry-modal" onClick={handleDialogClick} onClose={handleDialogClose} aria-labelledby="ministry-modal-title" >
+        {activeMinistry && (
+          <div className="ministry-modal__content">
+            <button type="button" className="ministry-modal__close" onClick={closeModal}  aria-label="Close">
+              ×
+            </button>
+
+            <div className="ministry-modal__header">
+              <img src={activeMinistry.image} alt="" className="ministry-modal__image"
+              />
+            </div>
+
+            <div className="ministry-modal__body">
+              <h2 id="ministry-modal-title" className="ministry-modal__title">
+                {activeMinistry.name}
+              </h2>
+              {activeMinistry.description.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </div>
           </div>
-        </div>
-
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h4 className="card-title text-primary">Youth Ministry</h4>
-              <p className="card-text">
-                Empowering students in grades 6-12 to live out their faith through weekly gatherings, 
-                mission trips, and community service.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h4 className="card-title text-primary">Worship Team</h4>
-              <p className="card-text">
-                Using our musical gifts to lead the congregation in worship. Opportunities for vocalists 
-                and instrumentalists.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h4 className="card-title text-primary">Women's Ministry</h4>
-              <p className="card-text">
-                Bible studies, fellowship events, and service opportunities designed to help women 
-                grow spiritually and build community.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h4 className="card-title text-primary">Men's Ministry</h4>
-              <p className="card-text">
-                Building godly men through accountability groups, service projects, and monthly 
-                breakfast gatherings.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h4 className="card-title text-primary">Outreach & Missions</h4>
-              <p className="card-text">
-                Serving our local community and supporting global missions. Food pantry, community 
-                events, and mission trips.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h4 className="card-title text-primary">Small Groups</h4>
-              <p className="card-text">
-                Connect with others in intimate settings for Bible study, prayer, and authentic 
-                Christian fellowship throughout the week.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h4 className="card-title text-primary">Seniors Ministry</h4>
-              <p className="card-text">
-                Fellowship and spiritual growth for our senior adults through luncheons, day trips, 
-                and Bible studies.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h4 className="card-title text-primary">Hospitality Team</h4>
-              <p className="card-text">
-                Creating a welcoming environment through greeting, ushering, and serving refreshments 
-                to guests and members.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="text-center mt-5">
-        <h3>Want to Get Involved?</h3>
-        <p>We'd love to help you find the right ministry fit for you!</p>
-        <Link to="/contact" className="btn btn-primary btn-lg">Contact Us</Link>
-      </div>
-    </div>
+        )}
+      </dialog>
+      </>
   );
 }
 

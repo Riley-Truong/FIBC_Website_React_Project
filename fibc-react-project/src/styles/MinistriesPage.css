@@ -1,0 +1,219 @@
+.ministries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.ministries-section {
+    align-items: center;
+}
+
+.ministry-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface, #ffffff);
+  border-radius: var(--radius, 8px);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ministry-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.ministry-card__media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--surface-alt, #f0f0f0);
+}
+
+.ministry-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.ministry-card:hover .ministry-card__media img {
+  transform: scale(1.04);
+}
+
+.ministry-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  flex: 1;
+}
+
+.ministry-card__title {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: var(--fw-bold);
+  margin: 0;
+  color: var(--brand, #1a2842);
+}
+
+.ministry-card__button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.ministry-modal {
+  border: none;
+  padding: 0;
+  margin: auto;
+  max-width: 600px;
+  width: calc(100% - 2rem);
+  max-height: calc(100vh - 2rem);
+  background: var(--surface, #ffffff);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: 
+    opacity 0.2s ease, 
+    transform 0.2s ease,
+    overlay 0.2s ease allow-discrete,
+    display 0.2s ease allow-discrete;
+}
+
+.ministry-modal[open] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@starting-style {
+  .ministry-modal[open] {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.ministry-modal::backdrop {
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(2px);
+  transition: 
+    background 0.2s ease, 
+    overlay 0.2s ease allow-discrete,
+    display 0.2s ease allow-discrete;
+}
+
+.ministry-modal[open]::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+@starting-style {
+  .ministry-modal[open]::backdrop {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+.ministry-modal__content {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 2rem);
+  position: relative;
+}
+
+.ministry-modal__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--brand, #1a2842);
+  font-size: 1.75rem;
+  line-height: 1;
+  font-weight: 300;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  transition: background 0.15s ease, transform 0.15s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.ministry-modal__close:hover {
+  background: #ffffff;
+  transform: scale(1.05);
+}
+
+.ministry-modal__close:focus-visible {
+  outline: 2px solid var(--accent, #b85c38);
+  outline-offset: 2px;
+}
+
+.ministry-modal__image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.ministry-modal__body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.ministry-modal__title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: var(--fw-bold);
+  color: var(--brand, #1a2842);
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.ministry-modal__body p {
+  margin: 0 0 1rem;
+  line-height: 1.65;
+  color: var(--text, #222831);
+}
+
+.ministry-modal__body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .ministries-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .ministry-modal {
+    max-width: 100%;
+    width: 100%;
+    max-height: 100vh;
+    height: 100vh;
+    border-radius: 0;
+    margin: 0;
+  }
+  
+  .ministry-modal__content {
+    max-height: 100vh;
+  }
+  
+  .ministry-modal__image {
+    height: 180px;
+  }
+  
+  .ministry-modal__title {
+    font-size: 1.5rem;
+  }
+  
+  .ministry-modal__close {
+    width: 40px;
+    height: 40px;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}

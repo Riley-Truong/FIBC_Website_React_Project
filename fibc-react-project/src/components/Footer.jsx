@@ -9,7 +9,7 @@ function Footer() {
         <div className="fibc-footer__grid">
           <div className="fibc-footer__col fibc-footer__col--brand">
             <div className="fibc-footer__brand">
-              <span className="fibc-footer__brand-mark" aria-hidden="true">F</span>
+            <img src="/icon.png" alt="FIBC Logo" className='fibc-nav__brand-mark' width="32" height="52" />
               <div>
                 <div className="fibc-footer__brand-name">Faith Independent</div>
                 <div className="fibc-footer__brand-sub">Baptist Church</div>
