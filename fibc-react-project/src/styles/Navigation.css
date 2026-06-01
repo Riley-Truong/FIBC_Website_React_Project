@@ -104,8 +104,7 @@
 .fibc-nav__link.is-active {
   color: var(--accent);
 }
-.fibc-nav__link.is-active::after {
-  content: '';
+.fibc-nav__indicator {
   position: absolute;
   bottom: -2px;
   left: 0.85rem;

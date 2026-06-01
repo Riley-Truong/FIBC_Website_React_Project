@@ -5,7 +5,7 @@ import '../styles/Navigation.css';
 
 const NAV_GROUPS = [
     {
-        lable: 'About',
+        label: 'About',
         items: [
             { to: '/about', label: 'Our Church'},
             { to: '/staff', label: 'Pastor & Staff'},
@@ -14,7 +14,7 @@ const NAV_GROUPS = [
         ],
     },
     {
-        lable: 'Visit',
+        label: 'Visit',
         items: [
             { to: '/visit', label: 'Plan Your Visit'},
             { to: '/services', label: 'Service Times'},
@@ -76,22 +76,23 @@ function Navigation() {
             <ul className="fibc-nav__list">
               <li>
                 <NavLink to="/" end className={({isActive}) => `fibc-nav__link ${isActive ? 'is-active' : ''}`}>
-                  Home
-                </NavLink>
+                  {({ isActive }) => (
+                    <>
+                      Home
+                      {isActive && (
+                        <motion.span layoutId="nav-indicator" className="fibc-nav__indicator" transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }} />
+                      )}
+                    </>
+                  )}
+                </NavLink>    
               </li>
 
               {NAV_GROUPS.map(group => (
-                <li
-                  key={group.label}
-                  className="fibc-nav__dropdown"
-                  onMouseEnter={() => setOpenDropdown(group.label)}
-                  onMouseLeave={() => setOpenDropdown(null)}
-                >
+                <li key={group.label} className="fibc-nav__dropdown">
                   <button
                     className="fibc-nav__link fibc-nav__dropdown-trigger"
                     aria-expanded={openDropdown === group.label}
                     aria-haspopup="true"
-                    onFocus={() => setOpenDropdown(group.label)}
                     onClick={() => setOpenDropdown(openDropdown === group.label ? null : group.label)}
                   >
                     {group.label}
@@ -124,13 +125,21 @@ function Navigation() {
                 </li>
               ))}
 
-              {NAV_LINKS.map(link => (
-                <li key={link.to}>
-                  <NavLink to={link.to} className={({isActive}) => `fibc-nav__link ${isActive ? 'is-active' : ''}`}>
-                    {link.label}
-                  </NavLink>
-                </li>
-              ))}
+                {NAV_LINKS.map(link => (
+                  <li key={link.to}>
+                    <NavLink to={link.to} className={({isActive}) => `fibc-nav__link ${isActive ? 'is-active' : ''}`}>
+                      {({ isActive }) => (
+                        <>
+                          {link.label}
+                          {isActive && (
+                            <motion.span layoutId="nav-indicator" className="fibc-nav__indicator" transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }} />
+                          )}
+                        </>
+                      )}
+                    </NavLink>
+                  </li>
+                ))}
+
             </ul>
 
             <Link to="/giving" className="btn-fibc fibc-nav__cta">Give</Link>

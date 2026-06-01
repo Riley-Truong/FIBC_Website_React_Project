@@ -74,7 +74,6 @@ function HomePage() {
                       <li key={s.name} className="home-services__session">
                         <span className="home-services__time">{s.time}</span>
                         <span className="home-services__name">{s.name}</span>
-                        <span className="home-services__note">{s.note}</span>
                       </li>
                     ))}
                   </ul>

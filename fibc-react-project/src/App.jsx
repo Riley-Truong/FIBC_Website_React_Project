@@ -13,6 +13,11 @@ import SermonsPage from './pages/SermonsPage';
 import ContactPage from './pages/ContactPage';
 import GivingPage from './pages/GivingPage';
 import StaffPage from './pages/StaffPage';
+import BeliefsPage from './pages/BeliefsPage';
+import FAQPage from './pages/FAQPage';
+import VisitPage from './pages/VisitPage';
+import SalvationPage from './pages/SalvationPage';
+import NextStepsPage from './pages/NextStepsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -26,12 +31,12 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/staff" element={<StaffPage />} />
-          {/* <Route path="/beliefs" element={<BeliefsPage />} /> */}
-          {/* <Route path="/faq" element={<FAQPage />} />
-          <Route path="/visit" element={<VisitPage />} /> */}
+          <Route path="/beliefs" element={<BeliefsPage />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/visit" element={<VisitPage />} />
           <Route path="/services" element={<ServicesPage />} />
-          {/* <Route path="/salvation" element={<SalvationPage />} /> */}
-          {/* <Route path="/next-steps" element={<NextStepsPage />} /> */}
+          <Route path="/salvation" element={<SalvationPage />} />
+          <Route path="/next-steps" element={<NextStepsPage />} />
           <Route path="/ministries" element={<MinistriesPage />} />
           <Route path="/sermons" element={<SermonsPage />} />
           <Route path="/events" element={<EventsPage />} />
