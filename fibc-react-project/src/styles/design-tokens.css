@@ -54,9 +54,9 @@
   --brand-hover:    var(--color-navy-700);
 
   /* -------- Typography -------- */
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Nunito Sans', system-ui, sans-serif;
+  
   /* Type scale (modular, ratio ~1.25 — major third). Sizes in rem. */
   --fs-12: 0.75rem;
   --fs-14: 0.875rem;
