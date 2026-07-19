@@ -49,6 +49,7 @@
   --text-muted:     var(--color-muted);
   --text-inverse:   var(--color-cream);
   --accent:         var(--color-rust-600);
+  --accent-light: #D98757;
   --accent-hover:   var(--color-rust-700);
   --brand:          var(--color-navy-800);
   --brand-hover:    var(--color-navy-700);

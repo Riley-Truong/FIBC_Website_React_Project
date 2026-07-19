@@ -200,7 +200,7 @@ function Navigation() {
                   </NavLink>
                 ))}
 
-                <Link to="/giving" className="btn-fibc fibc-nav__drawer-cta">Give</Link>
+                <Link to="/giving" className="btn-fibc btn-fibc--inverse fibc-nav__cta">Give</Link>
               </nav>
             </motion.aside>
           </>

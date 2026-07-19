@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
-  background: rgba(250, 246, 240, 0.85);
+  background: color-mix(in srgb, var(--brand) 86%, transparent);
   backdrop-filter: saturate(140%) blur(10px);
   -webkit-backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid transparent;
@@ -13,8 +13,8 @@
 }
 
 .fibc-nav--scrolled {
-  background: rgba(250, 246, 240, 0.94);
-  border-bottom-color: var(--color-line);
+  background: color-mix(in srgb, var(--brand) 96%, transparent);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
   box-shadow: var(--shadow-xs);
 }
 
@@ -34,7 +34,7 @@
   align-items: center;
   gap: var(--sp-3);
   text-decoration: none;
-  color: var(--brand);
+  color: var(--bg-page);
   margin-right: auto;
 }
 .fibc-nav__brand-mark {
@@ -43,6 +43,7 @@
   object-fit: contain;
   flex-shrink: 0;
   display: block;
+  transition: height var(--dur) var(--ease-out), filter var(--dur) var(--ease-out);
 }
 
 .fibc-nav.is-scrolled .fibc-nav__brand-mark {
@@ -58,14 +59,14 @@
   font-family: var(--font-display);
   font-weight: var(--fw-semi);
   font-size: var(--fs-18);
-  color: var(--brand);
+  color: var(--bg-page);
 }
 .fibc-nav__brand-sub {
   font-family: var(--font-body);
   font-size: var(--fs-12);
   letter-spacing: var(--letter-wider);
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(250, 246, 240, 0.65);
 }
 
 /* Desktop list */
@@ -93,16 +94,16 @@
   font-size: var(--fs-14);
   font-weight: var(--fw-medium);
   letter-spacing: var(--letter-wide);
-  color: var(--text-primary);
+  color: rgba(250, 246, 240, 0.92); 
   border-radius: var(--radius);
   cursor: pointer;
   transition: color var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
   text-decoration: none;
   position: relative;
 }
-.fibc-nav__link:hover { color: var(--accent); }
+.fibc-nav__link:hover,
 .fibc-nav__link.is-active {
-  color: var(--accent);
+  color: var(--accent-light);
 }
 .fibc-nav__indicator {
   position: absolute;
@@ -110,7 +111,7 @@
   left: 0.85rem;
   right: 0.85rem;
   height: 2px;
-  background: var(--accent);
+  background: var(--accent-light);
   border-radius: 1px;
 }
 
@@ -164,12 +165,13 @@
   border: 1px solid var(--color-line);
   border-radius: var(--radius);
   cursor: pointer;
+  border-color: rgba(255, 255, 255, 0.25);
 }
 .fibc-nav__hamburger span {
   display: block;
   width: 22px; height: 2px;
   margin: 0 auto;
-  background: var(--text-primary);
+  background: var(--bg-page);
   border-radius: 2px;
   transition: transform var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out);
 }
