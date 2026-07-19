@@ -19,6 +19,12 @@ function BeliefRecursion({belief, number, depth=0}) {
         {belief.summary.map((paragraph, index) => (
           <p key={index} className="belief__summary">{paragraph}</p>
         ))}
+
+        {belief.references.length > 0 && (
+          <p className="belief__refs">
+            {belief.references.join(' · ')}
+          </p>
+        )}
                 
         {belief.children.length > 0 && (
           <div className="belief__children">
@@ -38,7 +44,7 @@ function BeliefRecursion({belief, number, depth=0}) {
 
 function BeliefsPage() {
     return(
-        <>
+          <>
             <SEO
                 title="What We Believe"
                 description="The doctrinal statement of Faith Independent Baptist Church — our core convictions about Scripture, God, salvation, and the church."
@@ -50,14 +56,14 @@ function BeliefsPage() {
                 subtitle="A summary of our core convictions, drawn directly from Scripture."
             />
 
-            <section className="section">
+            <section>
                 <div className="container-narrow">
                     <div className="beliefs-list">
                         {beliefs.map((belief, index) => (
                         <BeliefRecursion
                             key={belief.id}
                             belief={belief}
-                            number={String(index + 1).padStart(2, '0')}
+                            number={String(index + 1).padStart(2)}
                             depth={0}
                         />
                         ))}
@@ -72,7 +78,6 @@ function BeliefsPage() {
                 grid-template-columns: 80px 1fr;
                 gap: 1.5rem;
                 padding-bottom: 3rem;
-                border-bottom: 1px solid var(--color-line);
                 }
                 .belief:last-child { border-bottom: none; }
                 .belief__num {
@@ -82,6 +87,7 @@ function BeliefsPage() {
                 color: var(--accent);
                 line-height: 1;
                 opacity: 0.7;
+                padding-top: 2.2rem;
                 }
                 .belief__title { font-size: 1.75rem; margin-bottom: 0.75rem; color: var(--brand); }
                 .belief__summary { font-size: 1.0625rem; line-height: 1.75; margin-bottom: 1rem; }
@@ -95,8 +101,17 @@ function BeliefsPage() {
                 .belief { grid-template-columns: 1fr; }
                 .belief__num { font-size: 2rem; }
                 }
+                .belief__content {
+                  padding-top: 3rem;
+                }
+                .belief--depth-0 {
+                  border-bottom: 1px solid var(--color-line);
+                }
+                .belief--depth-0:last-child {
+                  border-bottom: none;
+                }
             `}</style>
-                </>
+          </>
     );
 }
 

@@ -69,7 +69,7 @@
   gap: var(--sp-2);
   font-size: var(--fs-16);
 }
-.home-hero__card-list strong { font-family: var(--font-display); color: var(--brand); margin-right: var(--sp-3); }
+.home-hero__card-list strong { font-family: var(--font-body); color: var(--brand); margin-right: var(--sp-3); }
 .home-hero__card-meta { font-size: var(--fs-14); color: var(--text-muted); margin: 0; }
 
 /* ===== Services strip ===== */
@@ -108,7 +108,7 @@
 }
 .home-services__time {
   grid-row: 1 / span 2;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: var(--fs-20);
   color: var(--accent);
