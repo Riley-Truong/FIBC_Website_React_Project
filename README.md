@@ -14,7 +14,7 @@ A production-ready, fully responsive church website built as a single-page appli
 
 ## Overview
 
-This site serves Faith Independent Baptist Church of McDonough, Georgia as its public web presence.
+This site serves Faith Independent Baptist Church of McDonough, Georgia.
 
 The project emphasizes maintainability: page content lives in a separate data layer, the visual system is driven by CSS design tokens, and repeated UI is factored into shared components.
 
@@ -32,8 +32,6 @@ The project emphasizes maintainability: page content lives in a separate data la
 | Hosting | Netlify (CI build + SPA redirects + security headers) |
 
 ## Project Structure
-
-The app lives in the `fibc-react-project/` subdirectory:
 
 ```
 fibc-react-project/
@@ -55,12 +53,6 @@ fibc-react-project/
     ├── styles/              # design-tokens.css + per-page/component stylesheets
     └── assets/              # Logo and staff imagery
 ```
-
-### Architecture Notes
-
-- **Separation of content and presentation.** Anything a church admin might want to change (service times, staff bios, belief statements) lives in `src/data/`. Components are pure renderers over that data.
-- **Shared page primitives.** `PageHero`, `SectionHeading`, and `SEO` keep the 14 pages visually and structurally consistent without copy-paste.
-- **Netlify SPA handling.** `netlify.toml` rewrites all routes to `index.html` (status 200) so deep links and refreshes work with client-side routing, and adds `X-Frame-Options`, `X-Content-Type-Options`, and XSS protection headers.
 
 ## Getting Started
 
@@ -89,7 +81,7 @@ npm run dev
 
 ## Deployment
 
-The site deploys to Netlify. `netlify.toml` defines the build (`npm run build` → publish `dist/`), so a push to the connected branch triggers a build and deploy automatically — no manual steps.
+The site deploys to Netlify. `netlify.toml` defines the build (`npm run build` → publish `dist/`).
 
 ## Author
 
