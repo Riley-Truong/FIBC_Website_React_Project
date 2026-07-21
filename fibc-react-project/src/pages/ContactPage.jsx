@@ -1,126 +1,145 @@
-import React from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '../components/shared/SEO.jsx';
+import PageHero from '../components/shared/PageHero.jsx';
+import ChurchMap from '../components/shared/ChurchMap.jsx';
+import '../styles/ContactPage.css';
 
 function ContactPage() {
-  const handleSubmit = (e) => {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('idle'); // idle | sending | sent
+
+  function update(field, value) {
+    setForm((f) => ({ ...f, [field]: value }));
+  }
+
+  function handleSubmit(e) {
     e.preventDefault();
-    alert('Thank you for your message! We\'ll get back to you soon.');
-  };
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
+    setStatus('sending');
+    // Simulated submit — wire up Netlify Forms, Formspree, or your own backend later.
+    setTimeout(() => {
+      setStatus('sent');
+      setForm({ name: '', email: '', message: '' });
+    }, 600);
+  }
 
   return (
-    <div className="container my-5">
-      <h1 className="mb-4">Contact Us</h1>
-      <div className="row">
-        <div className="col-md-6">
-          <h3>Get in Touch</h3>
-          <p className="lead">We'd love to hear from you! Fill out the form and we'll respond as soon as possible.</p>
-          
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">Name *</label>
-              <input type="text" className="form-control" id="name" required />
+    <>
+      <SEO
+        title="Contact"
+        description="Get in touch with Faith Independent Baptist Church of McDonough, GA. We'd love to hear from you."
+      />
+
+      <PageHero
+        title="Contact Us"
+        subtitle="Question, prayer request, or just want to say hello. We'd love to hear from you!"
+      />
+
+      <section className="section">
+        <div className="container">
+          <div className="contact-grid">
+            {/* Form */}
+            <div className="contact-form-wrap">
+              <h2 className="contact-h2">Send a message</h2>
+              <p className="contact-lead">
+                Fill out the form and someone from our team will follow up within a couple of days.
+              </p>
+
+              <form onSubmit={handleSubmit} className="contact-form" noValidate>
+                <label className="contact-field">
+                  <span>Your name</span>
+                  <input
+                    type="text"
+                    value={form.name}
+                    onChange={(e) => update('name', e.target.value)}
+                    required
+                    autoComplete="name"
+                  />
+                </label>
+
+                <label className="contact-field">
+                  <span>Email address</span>
+                  <input
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => update('email', e.target.value)}
+                    required
+                    autoComplete="email"
+                  />
+                </label>
+
+                <label className="contact-field">
+                  <span>Message</span>
+                  <textarea
+                    rows={6}
+                    value={form.message}
+                    onChange={(e) => update('message', e.target.value)}
+                    required
+                  />
+                </label>
+
+                <button
+                  type="submit"
+                  className="btn-fibc"
+                  disabled={status === 'sending'}
+                >
+                  {status === 'sending' ? 'Sending…' : 'Send message'}
+                </button>
+
+                <AnimatePresence>
+                  {status === 'sent' && (
+                    <motion.div
+                      className="contact-confirm"
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      Thanks — we got it. Someone will be in touch soon.
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </form>
             </div>
-            
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email *</label>
-              <input type="email" className="form-control" id="email" required />
-            </div>
-            
-            <div className="mb-3">
-              <label htmlFor="phone" className="form-label">Phone</label>
-              <input type="tel" className="form-control" id="phone" />
-            </div>
-            
-            <div className="mb-3">
-              <label htmlFor="subject" className="form-label">Subject *</label>
-              <select className="form-select" id="subject" required>
-                <option value="">Choose...</option>
-                <option value="general">General Inquiry</option>
-                <option value="prayer">Prayer Request</option>
-                <option value="visit">Planning a Visit</option>
-                <option value="ministry">Ministry Information</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            
-            <div className="mb-3">
-              <label htmlFor="message" className="form-label">Message *</label>
-              <textarea className="form-control" id="message" rows="5" required></textarea>
-            </div>
-            
-            <button type="submit" className="btn btn-primary btn-lg">Send Message</button>
-          </form>
+
+            {/* Details */}
+            <aside className="contact-details">
+              <div className="contact-block">
+                <h3>Visit us</h3>
+                <address>
+                  Faith Independent Baptist Church
+                  <br />
+                  McDonough, GA
+                </address>
+                <p className="contact-note">
+                  Driving directions and a map are on the{' '}
+                  <a href="/visit">Visit page</a>.
+                </p>
+              </div>
+
+              <div className="contact-block">
+                <h3>Worship with us</h3>
+                <p>
+                  Sundays<br />
+                  9:30 AM Sunday School<br />
+                  11:00 AM Morning Worship<br />
+                  5:00 PM Evening Service
+                </p>
+                <p>
+                  Wednesdays<br />
+                  7:00 PM Bible Study
+                </p>
+              </div>
+            </aside>
+          </div>
+
+          <div className="contact-map">
+            <h2 className="contact-h2">Find us</h2>
+            <ChurchMap query="Faith Independent Baptist Church, McDonough, GA" />
+          </div>
         </div>
-        
-        <div className="col-md-6">
-          <h3>Visit Us</h3>
-          
-          <div className="card mb-3">
-            <div className="card-body">
-              <h5 className="card-title">
-                <i className="bi bi-geo-alt-fill text-primary me-2"></i>
-                Location
-              </h5>
-              <p className="card-text">
-                Faith Independent Baptist Church<br />
-                123 Faith Street<br />
-                Your City, ST 12345
-              </p>
-              <button className="btn btn-outline-primary btn-sm">Get Directions</button>
-            </div>
-          </div>
-
-          <div className="card mb-3">
-            <div className="card-body">
-              <h5 className="card-title">
-                <i className="bi bi-telephone-fill text-primary me-2"></i>
-                Phone
-              </h5>
-              <p className="card-text">
-                Office: (555) 123-4567<br />
-                Prayer Line: (555) 123-4568
-              </p>
-            </div>
-          </div>
-
-          <div className="card mb-3">
-            <div className="card-body">
-              <h5 className="card-title">
-                <i className="bi bi-envelope-fill text-primary me-2"></i>
-                Email
-              </h5>
-              <p className="card-text">
-                General: info@gracechurch.org<br />
-                Pastor: pastor@gracechurch.org
-              </p>
-            </div>
-          </div>
-
-          <div className="card mb-3">
-            <div className="card-body">
-              <h5 className="card-title">
-                <i className="bi bi-clock-fill text-primary me-2"></i>
-                Office Hours
-              </h5>
-              <p className="card-text">
-                Monday - Thursday: 9:00 AM - 4:00 PM<br />
-                Friday: 9:00 AM - 12:00 PM<br />
-                Closed weekends
-              </p>
-            </div>
-          </div>
-
-          <div className="card bg-light">
-            <div className="card-body">
-              <h5 className="card-title">First Time Visitor?</h5>
-              <p className="card-text">
-                We can't wait to meet you! When you arrive, look for our welcome team members 
-                who will help you find parking, childcare check-in, and answer any questions you may have.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
 
