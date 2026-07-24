@@ -88,16 +88,6 @@
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
 }
-.special-event__when {
-    font-size: var(--fs-12);
-    font-weight: var(--fw-semi);
-    letter-spacing: var(--letter-wider);
-    text-transform: uppercase;
-    color: var(--accent);
-    background: var(--color-rust-100);
-    padding: 0.35rem 0.8rem;
-    border-radius: var(--radius-pill);
-}
 .special-event__title {
     font-family: var(--font-display);
     font-size: var(--fs-24);

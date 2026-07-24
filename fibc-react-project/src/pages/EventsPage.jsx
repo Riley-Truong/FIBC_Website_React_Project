@@ -31,7 +31,7 @@ function EventsPage() {
         description="Weekly services, fellowship gatherings, and special events at Faith Independent Baptist Church."
       />
 
-      <PageHero title="Events"/>
+      <PageHero title="Events" subtitle="Keep up with upcoming events"/>
 
       <section className="section">
         <div className="container">
@@ -76,7 +76,6 @@ function EventsPage() {
                 {...fadeUp}
                 transition={{ duration: 0.5, ease: EASE, delay: i * 0.05 }}
               >
-                <span className="special-event__when">{e.when}</span>
                 <h3 className="special-event__title">{e.title}</h3>
                 <p className="special-event__body">{e.body}</p>
               </motion.article>
