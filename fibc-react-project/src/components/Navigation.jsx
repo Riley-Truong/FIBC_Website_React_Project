@@ -1,6 +1,7 @@
 import{ useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import fibcLogo from '../assets/fibc-logo.png';
 import '../styles/Navigation.css';
 
 const NAV_GROUPS = [
@@ -64,12 +65,14 @@ function Navigation() {
 
       <header className={`fibc-nav ${scrolled ? 'fibc-nav--scrolled' : ''}`}>
         <div className="container-wide fibc-nav__inner">
-          <Link to="/" className="fibc-nav__brand" aria-label="FIBC home">
-            <img src="/icon.png" alt="FIBC Logo" className='fibc-nav__brand-mark' width="32" height="52" />
-            <span className="fibc-nav__brand-text">
-              <span className="fibc-nav__brand-name">Faith Independent</span>
-              <span className="fibc-nav__brand-sub">Baptist Church</span>
-            </span>
+          <Link to="/" className="fibc-nav__brand" aria-label="Faith Independent Baptist Church home">
+            <img
+              src={fibcLogo}
+              alt=""
+              className="fibc-nav__brand-mark"
+              width="800"
+              height="262"
+            />
           </Link>
 
           <nav className="fibc-nav__desktop" aria-label="Primary">

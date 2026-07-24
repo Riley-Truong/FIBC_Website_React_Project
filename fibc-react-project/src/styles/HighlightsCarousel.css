@@ -1,0 +1,172 @@
+.highlights {
+    padding: var(--section-y) 0;
+    background: var(--bg-alt);
+}
+.highlights__head {
+    text-align: center;
+    margin-bottom: var(--sp-7);
+}
+.highlights__title {
+    font-size: clamp(var(--fs-30), 4vw, var(--fs-48));
+    margin: 0;
+}
+
+.highlights__viewport {
+    position: relative;
+}
+
+.highlights__stage {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    background: var(--bg-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow);
+}
+
+.highlights__card {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    background: var(--bg-surface);
+    cursor: grab;
+}
+.highlights__card:active {
+    cursor: grabbing;
+}
+
+.highlights__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--sp-4);
+    padding: clamp(var(--sp-5), 3.5vw, var(--sp-8));
+    overflow: hidden;
+}
+.highlights__tag {
+    font-size: var(--fs-12);
+    font-weight: var(--fw-semi);
+    letter-spacing: var(--letter-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--color-rust-100);
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--radius-pill);
+}
+.highlights__card-title {
+    font-size: clamp(var(--fs-24), 3vw, var(--fs-36));
+    color: var(--brand);
+    margin: 0;
+}
+.highlights__text {
+    max-width: 46ch;
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: var(--lh-relaxed);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.highlights__cta {
+    margin-top: var(--sp-2);
+}
+
+.highlights__media {
+    position: relative;
+    background: var(--color-navy-800);
+}
+.highlights__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.highlights__media--blank {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--color-navy-700), var(--color-navy-900));
+}
+.highlights__monogram {
+    font-family: var(--font-display);
+    font-size: var(--fs-60);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.12em;
+    color: rgba(250, 246, 240, 0.14);
+}
+
+/* ---- Prev / next ---- */
+.highlights__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--color-line);
+    border-radius: 50%;
+    background: var(--bg-surface);
+    color: var(--brand);
+    font-size: 1.7rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    z-index: 3;
+    transition: background var(--dur) var(--ease-out),
+                color var(--dur) var(--ease-out),
+                transform var(--dur) var(--ease-out);
+}
+.highlights__nav:hover {
+    background: var(--brand);
+    color: var(--text-inverse);
+    transform: translateY(-50%) scale(1.05);
+}
+.highlights__nav--prev { left: -14px; }
+.highlights__nav--next { right: -14px; }
+
+.highlights__dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--sp-3);
+    margin-top: var(--sp-6);
+}
+.highlights__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-line);
+    cursor: pointer;
+    transition: background var(--dur) var(--ease-out),
+                transform var(--dur) var(--ease-out);
+}
+.highlights__dot:hover { background: var(--color-navy-500); }
+.highlights__dot.is-active {
+    background: var(--accent);
+    transform: scale(1.3);
+}
+
+@media (max-width: 768px) {
+    .highlights__stage { height: 480px; }
+    .highlights__card {
+        grid-template-columns: 1fr;
+        grid-template-rows: 150px 1fr;
+    }
+    .highlights__media {
+        order: -1;
+        min-height: 0;
+    }
+    /* Keep the arrows over the image band at the top so they never
+       sit on top of the copy below it. */
+    .highlights__nav {
+        top: 75px;
+        background: rgba(255, 255, 255, 0.92);
+    }
+    .highlights__nav--prev { left: 10px; }
+    .highlights__nav--next { right: 10px; }
+}
