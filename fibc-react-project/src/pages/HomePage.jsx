@@ -100,50 +100,6 @@ function HomePage() {
             </div>
           </div>
         </section>
-
-        <section className="section section--alt">
-          <div className="container-base">
-            <SectionHeading eyebrow="Ministries" title="There’s a place for everyone" subtitle="Whatever stage of life you’re in, we have a ministry that fits." align="center"/>
-            <motion.div className="home-ministries" initial="hidden" whileInView="show" viewport={{ once: true, margin: '-80px' }}
-              variants={{
-                hidden: {},
-                show: { transition: { staggerChildren: 0.08 } },
-              }}
-            >
-              {ministries.filter(m => m.featured).map(m => (
-                <motion.div key={m.id} className="fibc-card fibc-card--hover home-ministries__card"
-                  variants={{
-                    hidden: { opacity: 0, y: 16 },
-                    show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16,1,0.3,1] } },
-                  }}
-                >
-                  <h3 className="home-ministries__card-title">{m.name}</h3>
-                  <p className="home-ministries__card-desc">{m.description}</p>
-                  <p className="home-ministries__card-meets"><strong>Meets:</strong> {m.meets}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-            <div className="text-center" style={{marginTop: 'var(--sp-7)'}}>
-              <Link to="/ministries" className="btn-fibc-outline">See all ministries</Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="section--inverse home-cta">
-          <div className="container-narrow text-center">
-            <span className="eyebrow eyebrow--inverse">Take a step</span>
-            <h2 className="home-cta__title">Whatever you’re looking for, start here.</h2>
-            <p className="home-cta__sub">
-              Plan your first visit, watch a recent sermon, or send us a question.
-            </p>
-            <div className="home-cta__buttons">
-              <Link to="/visit" className="btn-fibc-ghost">Plan your visit</Link>
-              <Link to="/sermons" className="btn-fibc-ghost">Watch a sermon</Link>
-              <Link to="/contact" className="btn-fibc-ghost">Contact us</Link>
-            </div>
-          </div>
-        </section>
-
       </>      
     );
 }

@@ -18,7 +18,6 @@ const NAV_GROUPS = [
         label: 'Visit',
         items: [
             { to: '/visit', label: 'Plan Your Visit'},
-            { to: '/services', label: 'Service Times'},
             { to: '/salvation', label: 'Salvation'},
             { to: '/next-steps', label: 'Next Steps'},
         ],

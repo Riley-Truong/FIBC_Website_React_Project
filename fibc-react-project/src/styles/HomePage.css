@@ -136,33 +136,6 @@
   padding: var(--sp-7);
 }
 
-/* ===== Ministries grid ===== */
-.home-ministries {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--sp-4);
-}
-.home-ministries__card-title {
-  font-size: var(--fs-20);
-  margin-bottom: var(--sp-3);
-  color: var(--brand);
-}
-.home-ministries__card-desc { font-size: var(--fs-14); margin-bottom: var(--sp-3); }
-.home-ministries__card-meets { font-size: var(--fs-14); color: var(--text-muted); margin: 0; }
-.home-ministries__card-meets strong { color: var(--text-primary); }
-
-/* ===== CTA ===== */
-.home-cta {
-  padding: var(--section-y-lg) 0;
-  position: relative;
-}
-.home-cta__title {
-  font-size: clamp(var(--fs-30), 4vw, var(--fs-48));
-  margin-bottom: var(--sp-4);
-}
-.home-cta__sub { color: rgba(250, 246, 240, 0.85); margin-bottom: var(--sp-6); font-size: var(--fs-18); }
-.home-cta__buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-3); }
-
 /* Responsive */
 @media (max-width: 991px) {
   .home-hero__inner { grid-template-columns: 1fr; }

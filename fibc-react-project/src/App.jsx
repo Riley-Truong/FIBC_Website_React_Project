@@ -6,7 +6,6 @@ import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
-import ServicesPage from './pages/ServicesPage';
 import MinistriesPage from './pages/MinistriesPage';
 import EventsPage from './pages/EventsPage';
 import SermonsPage from './pages/SermonsPage';
@@ -34,7 +33,6 @@ function App() {
           <Route path="/beliefs" element={<BeliefsPage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/visit" element={<VisitPage />} />
-          <Route path="/services" element={<ServicesPage />} />
           <Route path="/salvation" element={<SalvationPage />} />
           <Route path="/next-steps" element={<NextStepsPage />} />
           <Route path="/ministries" element={<MinistriesPage />} />

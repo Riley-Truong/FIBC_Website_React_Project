@@ -94,7 +94,6 @@ function HighlightsCarousel() {
               aria-label={`${active + 1} of ${count}: ${item.title}`}
             >
               <div className="highlights__body">
-                <span className="highlights__tag">{item.tag}</span>
                 <h3 className="highlights__card-title">{item.title}</h3>
                 <p className="highlights__text">{item.text}</p>
                 {item.ctaTo && (
