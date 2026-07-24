@@ -1,105 +1,140 @@
-import React from 'react';
+import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import SEO from '../components/shared/SEO.jsx';
+import PageHero from '../components/shared/PageHero.jsx';
+import SectionHeading from '../components/shared/SectionHeading.jsx';
+import { services } from '../data/services.js';
+import { specialEvents, calendar } from '../data/events.js';
+import '../styles/EventsPage.css';
+
+const EASE = [0.16, 1, 0.3, 1];
+
+// Shared "fade + rise" entrance for cards as they scroll into view.
+const fadeUp = {
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+};
 
 function EventsPage() {
+  const lightboxRef = useRef(null);
+  const [calendarOk, setCalendarOk] = useState(true);
+
+  const openLightbox = () => lightboxRef.current?.showModal();
+  const closeLightbox = () => lightboxRef.current?.close();
+
   return (
-    <div className="container my-5">
-      <h1 className="mb-4">Upcoming Events</h1>
-      
-      <div className="row g-4">
-        <div className="col-md-6">
-          <div className="card border-primary">
-            <div className="card-header bg-primary text-white">
-              <h5 className="mb-0">This Week</h5>
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Sunday Worship Services</h5>
-              <p className="card-text"><strong>Date:</strong> Every Sunday</p>
-              <p className="card-text"><strong>Time:</strong> 9:00 AM & 11:00 AM</p>
-              <p className="card-text">Join us for inspiring worship and biblical teaching.</p>
-            </div>
+    <>
+      <SEO
+        title="Events"
+        description="Weekly services, fellowship gatherings, and special events at Faith Independent Baptist Church."
+      />
+
+      <PageHero title="Events"/>
+
+      <section className="section">
+        <div className="container">
+          <SectionHeading
+            title="Recurring services"
+          />
+
+          <div className="events-grid">
+            {services.map((day, i) => (
+              <motion.div
+                key={day.day}
+                className="fibc-card event-card"
+                {...fadeUp}
+                transition={{ duration: 0.5, ease: EASE, delay: i * 0.05 }}
+              >
+                <h3 className="event-card__day">{day.day}</h3>
+                <ul className="event-card__list">
+                  {day.sessions.map((s) => (
+                    <li key={s.name}>
+                      <span className="event-card__time">{s.time}</span>
+                      <span className="event-card__name">{s.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
           </div>
         </div>
+      </section>
 
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-header">
-              <h5 className="mb-0">Coming Up</h5>
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Family Movie Night</h5>
-              <p className="card-text"><strong>Date:</strong> Friday, February 7th</p>
-              <p className="card-text"><strong>Time:</strong> 6:30 PM</p>
-              <p className="card-text">Bring the whole family for a fun evening with popcorn and a family-friendly film!</p>
-            </div>
+      <section className="section section--alt">
+        <div className="container">
+          <SectionHeading
+            title="Special events"
+          />
+
+          <div className="special-grid">
+            {specialEvents.map((e, i) => (
+              <motion.article
+                key={e.title}
+                className="special-event"
+                {...fadeUp}
+                transition={{ duration: 0.5, ease: EASE, delay: i * 0.05 }}
+              >
+                <span className="special-event__when">{e.when}</span>
+                <h3 className="special-event__title">{e.title}</h3>
+                <p className="special-event__body">{e.body}</p>
+              </motion.article>
+            ))}
           </div>
         </div>
+      </section>
 
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-header">
-              <h5 className="mb-0">This Month</h5>
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Men's Breakfast</h5>
-              <p className="card-text"><strong>Date:</strong> Saturday, February 15th</p>
-              <p className="card-text"><strong>Time:</strong> 8:00 AM</p>
-              <p className="card-text">Monthly gathering for fellowship, food, and encouragement. All men welcome!</p>
-            </div>
-          </div>
+      <section className="section">
+        <div className="container">
+          <SectionHeading
+            title="Calendar"
+          />
+
+          <motion.div className="events-calendar" {...fadeUp} transition={{ duration: 0.5, ease: EASE }}>
+            {calendarOk ? (
+              <button
+                type="button"
+                className="events-calendar__thumb"
+                onClick={openLightbox}
+                aria-label="Open the calendar full size"
+              >
+                <img
+                  src={calendar.src}
+                  alt={calendar.alt}
+                  loading="lazy"
+                  onError={() => setCalendarOk(false)}
+                />
+                <span className="events-calendar__zoom">Click to enlarge</span>
+              </button>
+            ) : (
+              <div className="events-calendar__placeholder">
+                <p className="events-calendar__placeholder-title">Our latest calendar will be posted here soon.</p>
+                <p className="events-calendar__placeholder-note">
+                  In the meantime, dates go out in the weekly bulletin and from the pulpit each Sunday.
+                </p>
+              </div>
+            )}
+          </motion.div>
         </div>
+      </section>
 
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-header">
-              <h5 className="mb-0">Special Event</h5>
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Marriage Enrichment Seminar</h5>
-              <p className="card-text"><strong>Date:</strong> February 21-22</p>
-              <p className="card-text"><strong>Time:</strong> Friday 7PM, Saturday 9AM-4PM</p>
-              <p className="card-text">Strengthen your marriage through biblical teaching and practical tools. Registration required.</p>
-              <button className="btn btn-primary btn-sm">Register Now</button>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-header">
-              <h5 className="mb-0">Community Outreach</h5>
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Food Pantry Distribution</h5>
-              <p className="card-text"><strong>Date:</strong> Every 2nd & 4th Saturday</p>
-              <p className="card-text"><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
-              <p className="card-text">Volunteers needed to help serve our community. Sign up in the lobby!</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-header">
-              <h5 className="mb-0">Save the Date</h5>
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Easter Sunday Service</h5>
-              <p className="card-text"><strong>Date:</strong> April 20th</p>
-              <p className="card-text"><strong>Time:</strong> 9:00 AM & 11:00 AM</p>
-              <p className="card-text">Celebrate the resurrection with us! Special music and inspiring message.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="alert alert-success mt-5">
-        <h4>Stay Connected!</h4>
-        <p className="mb-0">
-          Sign up for our weekly newsletter to receive updates about upcoming events, service opportunities, 
-          and important announcements.
-        </p>
-      </div>
-    </div>
+      <dialog
+        ref={lightboxRef}
+        className="events-lightbox"
+        onClick={(e) => { if (e.target === lightboxRef.current) closeLightbox(); }}
+      >
+        <button
+          type="button"
+          className="events-lightbox__close"
+          onClick={closeLightbox}
+          aria-label="Close calendar"
+        >
+          ×
+        </button>
+        <img src={calendar.src} alt={calendar.alt} />
+      </dialog>
+    </>
   );
 }
 

@@ -4,6 +4,7 @@ import {motion} from 'framer-motion';
 import fibcLogo from '../assets/fibc-logo-white-rust-383w.png'
 import SEO from '../components/shared/SEO';
 import SectionHeading from '../components/shared/SectionHeading';
+import HighlightsCarousel from '../components/HighlightsCarousel';
 import { services } from '../data/services';
 import { ministries } from '../data/ministries';
 import '../styles/HomePage.css';
@@ -49,6 +50,8 @@ function HomePage() {
             </motion.aside>
           </div>
         </section>
+
+        <HighlightsCarousel />
 
         <section className="section">
           <div className="container-narrow text-center">

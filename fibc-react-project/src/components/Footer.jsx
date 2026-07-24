@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import fibcLogo from '../assets/fibc-logo.png';
 import '../styles/Footer.css';
 
 function Footer() {
@@ -9,11 +10,13 @@ function Footer() {
         <div className="fibc-footer__grid">
           <div className="fibc-footer__col fibc-footer__col--brand">
             <div className="fibc-footer__brand">
-            <img src="/icon.png" alt="FIBC Logo" className='fibc-nav__brand-mark' width="32" height="52" />
-              <div>
-                <div className="fibc-footer__brand-name">Faith Independent</div>
-                <div className="fibc-footer__brand-sub">Baptist Church</div>
-              </div>
+              <img
+                src={fibcLogo}
+                alt="Faith Independent Baptist Church"
+                className="fibc-footer__logo"
+                width="800"
+                height="262"
+              />
             </div>
             <p className="fibc-footer__tag">
               A Bible-believing, family-centered church serving McDonough and the
