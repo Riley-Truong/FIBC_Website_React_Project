@@ -11,7 +11,7 @@
 .ministry-card {
   display: flex;
   flex-direction: column;
-  background: var(--surface, #ffffff);
+  background: var(--bg-surface, #ffffff);
   border-radius: var(--radius, 8px);
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -26,7 +26,7 @@
 .ministry-card__media {
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: var(--surface-alt, #f0f0f0);
+  background: var(--bg-alt, #eceff1);
 }
 
 .ministry-card__media img {
@@ -54,7 +54,7 @@
   font-size: 1.375rem;
   font-weight: var(--fw-bold);
   margin: 0;
-  color: var(--brand, #1a2842);
+  color: var(--brand, #454f57);
 }
 
 .ministry-card__button {
@@ -69,7 +69,7 @@
   max-width: 600px;
   width: calc(100% - 2rem);
   max-height: calc(100vh - 2rem);
-  background: var(--surface, #ffffff);
+  background: var(--bg-surface, #ffffff);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -129,7 +129,7 @@
   border: none;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.95);
-  color: var(--brand, #1a2842);
+  color: var(--brand, #454f57);
   font-size: 1.75rem;
   line-height: 1;
   font-weight: 300;
@@ -147,7 +147,7 @@
 }
 
 .ministry-modal__close:focus-visible {
-  outline: 2px solid var(--accent, #b85c38);
+  outline: 2px solid var(--accent-strong, #027479);
   outline-offset: 2px;
 }
 
@@ -168,7 +168,7 @@
   font-family: var(--font-display);
   font-size: 1.75rem;
   font-weight: var(--fw-bold);
-  color: var(--brand, #1a2842);
+  color: var(--brand, #454f57);
   margin: 0 0 1rem;
   line-height: 1.2;
 }
@@ -176,7 +176,7 @@
 .ministry-modal__body p {
   margin: 0 0 1rem;
   line-height: 1.65;
-  color: var(--text, #222831);
+  color: var(--text-primary, #2a2f33);
 }
 
 .ministry-modal__body p:last-child {

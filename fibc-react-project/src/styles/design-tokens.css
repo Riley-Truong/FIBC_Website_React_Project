@@ -5,59 +5,69 @@
    component should reference these custom properties rather than hard-
    coding values, so a future palette / type tweak happens in one place.
 
-   The palette is built from the existing FIBC logo (deep navy with a
-   warm rust accent), then extended with a cream background and supporting
-   neutrals. Rationale lives in /docs/DESIGN_DECISIONS.md.
+   The palette is taken directly from the FIBC logo: a cool slate-charcoal
+   (the house outline + "FAITH / BAPTIST CHURCH" wordmark, #454f57) paired
+   with a vivid teal (the cross, "INDEPENDENT", and the ground swoosh,
+   #03aab2). Both scales below are built by tinting/shading those two exact
+   logo colors, then supported by cool neutrals so the whole site reads as
+   an extension of the mark.
    ======================================================================== */
 
 :root {
-  /* -------- Color: brand -------- */
-  --color-navy-900: #0f1a2e;          /* deepest, used very sparingly */
-  --color-navy-800: #1a2842;          /* primary brand navy (matches logo) */
-  --color-navy-700: #243454;
-  --color-navy-600: #34466a;
-  --color-navy-500: #4a5d83;
-  --color-navy-100: #e3e7ee;          /* tinted backgrounds */
-  --color-navy-50:  #f1f3f7;
+  /* -------- Color: brand — SLATE (from logo house + wordmark #454f57) -------- */
+  --color-slate-900: #1f2427;         /* deepest — dark sections, footer */
+  --color-slate-800: #30373d;         /* dark panels / strong headings */
+  --color-slate-700: #454f57;         /* PRIMARY BRAND — exact logo slate */
+  --color-slate-600: #666f75;         /* secondary text on light */
+  --color-slate-500: #848b90;         /* muted / large text only */
+  --color-slate-100: #e5e6e7;         /* tinted backgrounds */
+  --color-slate-50:  #f2f3f3;
 
-  --color-rust-700: #8a4126;          /* hovered accent */
-  --color-rust-600: #b85c38;          /* primary accent (matches logo) */
-  --color-rust-500: #c97a5b;
-  --color-rust-100: #f5e3da;          /* soft tinted highlight */
+  /* -------- Color: accent — TEAL (from logo cross + "INDEPENDENT" #03aab2) -------- */
+  --color-teal-800: #015a5f;          /* deepest hover */
+  --color-teal-700: #027479;          /* accessible teal for text/links (5.5:1 on white) */
+  --color-teal-600: #039299;          /* focus rings / large text on white */
+  --color-teal-500: #03aab2;          /* EXACT LOGO TEAL — vivid fills, borders, graphics */
+  --color-teal-400: #3abdc3;          /* bright teal for use on dark backgrounds */
+  --color-teal-100: #d7f1f3;          /* soft tinted highlight */
+  --color-teal-50:  #ebf8f9;
 
-  /* -------- Color: neutrals -------- */
-  --color-cream:    #faf6f0;          /* page background — warm off-white */
-  --color-cream-2:  #f3ece0;          /* alt section background */
-  --color-paper:    #ffffff;          /* card surfaces */
-  --color-ink:      #2a2a2a;          /* body text */
-  --color-ink-soft: #4a4a4a;          /* secondary text */
-  --color-muted:    #6b6b6b;          /* tertiary / captions */
-  --color-line:     #e5dfd3;          /* dividers, subtle on cream */
+  /* -------- Color: neutrals (cool, to sit beside the teal/slate) -------- */
+  --color-bg:       #f7f9fa;          /* page background — cool off-white */
+  --color-bg-2:     #eceff1;          /* alt section background */
+  --color-paper:    #ffffff;          /* card surfaces + logo lockups */
+  --color-ink:      #2a2f33;          /* body text */
+  --color-ink-soft: #4a5157;          /* secondary text */
+  --color-muted:    #6b7278;          /* tertiary / captions */
+  --color-line:     #e2e6e8;          /* dividers, subtle on the bg */
+  --color-mist:     #eef2f4;          /* cool off-white for text on dark */
 
   /* -------- Color: semantic -------- */
-  --color-success: #4f7a4a;
+  --color-success: #2f8f74;           /* teal-leaning green, harmonises with brand */
   --color-warning: #c98c1c;
-  --color-danger:  #a8392a;
+  --color-danger:  #c0392b;
 
   /* -------- Color: aliases (semantic role names) -------- */
-  --bg-page:        var(--color-cream);
-  --bg-alt:         var(--color-cream-2);
+  --bg-page:        var(--color-bg);
+  --bg-alt:         var(--color-bg-2);
   --bg-surface:     var(--color-paper);
-  --bg-inverse:     var(--color-navy-800);
+  --bg-inverse:     var(--color-slate-900);
   --text-primary:   var(--color-ink);
   --text-secondary: var(--color-ink-soft);
   --text-muted:     var(--color-muted);
-  --text-inverse:   var(--color-cream);
-  --accent:         var(--color-rust-600);
-  --accent-light: #D98757;
-  --accent-hover:   var(--color-rust-700);
-  --brand:          var(--color-navy-800);
-  --brand-hover:    var(--color-navy-700);
+  --text-inverse:   var(--color-mist);
+  --accent:         var(--color-teal-500);   /* vivid logo teal — fills, borders, focus graphics */
+  --accent-strong:  var(--color-teal-700);   /* accessible teal — small text, links, solid buttons */
+  --accent-light:   var(--color-teal-400);   /* bright teal — for dark backgrounds (nav / footer) */
+  --accent-hover:   var(--color-teal-800);
+  --accent-soft:    var(--color-teal-100);   /* tinted hover / callout backgrounds */
+  --brand:          var(--color-slate-700);  /* exact logo slate */
+  --brand-hover:    var(--color-slate-800);
 
   /* -------- Typography -------- */
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Nunito Sans', system-ui, sans-serif;
-  
+
   /* Type scale (modular, ratio ~1.25 — major third). Sizes in rem. */
   --fs-12: 0.75rem;
   --fs-14: 0.875rem;
@@ -117,12 +127,12 @@
   --radius-xl: 24px;
   --radius-pill: 999px;
 
-  /* -------- Shadows -------- */
-  --shadow-xs:  0 1px 2px rgba(15, 26, 46, 0.06);
-  --shadow-sm:  0 2px 6px rgba(15, 26, 46, 0.08);
-  --shadow:     0 6px 20px rgba(15, 26, 46, 0.10);
-  --shadow-md:  0 12px 32px rgba(15, 26, 46, 0.12);
-  --shadow-lg:  0 24px 60px rgba(15, 26, 46, 0.18);
+  /* -------- Shadows (cool slate-tinted) -------- */
+  --shadow-xs:  0 1px 2px rgba(31, 36, 39, 0.06);
+  --shadow-sm:  0 2px 6px rgba(31, 36, 39, 0.08);
+  --shadow:     0 6px 20px rgba(31, 36, 39, 0.10);
+  --shadow-md:  0 12px 32px rgba(31, 36, 39, 0.12);
+  --shadow-lg:  0 24px 60px rgba(31, 36, 39, 0.18);
 
   /* -------- Motion -------- */
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
@@ -141,15 +151,15 @@
   /* -------- Bootstrap variable overrides --------
      These let our tokens flow into anything Bootstrap renders without
      us having to restyle each component manually. */
-  --bs-primary: var(--color-navy-800);
-  --bs-secondary: var(--color-rust-600);
-  --bs-body-bg: var(--color-cream);
+  --bs-primary: var(--color-slate-700);
+  --bs-secondary: var(--color-teal-500);
+  --bs-body-bg: var(--color-bg);
   --bs-body-color: var(--color-ink);
   --bs-body-font-family: var(--font-body);
   --bs-body-font-size: var(--fs-16);
   --bs-body-line-height: var(--lh-normal);
-  --bs-link-color: var(--color-navy-800);
-  --bs-link-hover-color: var(--color-rust-600);
+  --bs-link-color: var(--color-slate-700);
+  --bs-link-hover-color: var(--color-teal-700);
   --bs-border-radius: var(--radius);
   --bs-border-color: var(--color-line);
 }

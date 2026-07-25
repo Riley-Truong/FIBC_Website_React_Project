@@ -1,5 +1,5 @@
 .fibc-footer {
-  background: var(--color-navy-900);
+  background: var(--color-slate-900);
   color: var(--text-inverse);
   padding-block: var(--sp-10) var(--sp-5);
   margin-top: var(--section-y-lg);
@@ -12,7 +12,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--accent) 0%, var(--color-rust-500) 100%);
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
 }
 
 .fibc-footer__grid {
@@ -20,7 +20,7 @@
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: var(--sp-7);
   padding-bottom: var(--sp-8);
-  border-bottom: 1px solid rgba(250, 246, 240, 0.12);
+  border-bottom: 1px solid rgba(238, 242, 244, 0.12);
 }
 
 .fibc-footer__col--brand { max-width: 360px; }
@@ -30,7 +30,7 @@
   width: fit-content;
   padding: 0.65rem 0.9rem;
   margin-bottom: var(--sp-5);
-  background: var(--color-cream);
+  background: var(--color-paper);
   border-radius: var(--radius-md);
 }
 .fibc-footer__logo {
@@ -40,7 +40,7 @@
 }
 
 .fibc-footer__tag {
-  color: rgba(250, 246, 240, 0.78);
+  color: rgba(238, 242, 244, 0.78);
   font-size: var(--fs-14);
   line-height: var(--lh-relaxed);
   margin-bottom: var(--sp-5);
@@ -50,14 +50,14 @@
   font-style: normal;
   font-size: var(--fs-14);
   line-height: var(--lh-relaxed);
-  color: rgba(250, 246, 240, 0.85);
+  color: rgba(238, 242, 244, 0.85);
 }
 .fibc-footer__address a {
-  color: var(--color-rust-500);
+  color: var(--accent-light);
   text-decoration: none;
   transition: color var(--dur) var(--ease-out);
 }
-.fibc-footer__address a:hover { color: var(--color-cream); text-decoration: underline; }
+.fibc-footer__address a:hover { color: var(--text-inverse); text-decoration: underline; }
 
 .fibc-footer__heading {
   font-family: var(--font-body);
@@ -65,7 +65,7 @@
   font-weight: var(--fw-semi);
   letter-spacing: var(--letter-wider);
   text-transform: uppercase;
-  color: var(--color-rust-500);
+  color: var(--accent-light);
   margin-bottom: var(--sp-4);
 }
 
@@ -78,12 +78,12 @@
   gap: var(--sp-2);
 }
 .fibc-footer__list a {
-  color: rgba(250, 246, 240, 0.82);
+  color: rgba(238, 242, 244, 0.82);
   font-size: var(--fs-14);
   text-decoration: none;
   transition: color var(--dur) var(--ease-out);
 }
-.fibc-footer__list a:hover { color: var(--color-cream); }
+.fibc-footer__list a:hover { color: var(--text-inverse); }
 
 .fibc-footer__bottom {
   display: flex;
@@ -93,8 +93,8 @@
   gap: var(--sp-3);
   padding-top: var(--sp-5);
 }
-.fibc-footer__copy { margin: 0; font-size: var(--fs-14); color: rgba(250, 246, 240, 0.6); }
-.fibc-footer__verse { margin: 0; font-family: var(--font-display); color: rgba(250, 246, 240, 0.6); font-size: var(--fs-14); }
+.fibc-footer__copy { margin: 0; font-size: var(--fs-14); color: rgba(238, 242, 244, 0.6); }
+.fibc-footer__verse { margin: 0; font-family: var(--font-display); color: rgba(238, 242, 244, 0.6); font-size: var(--fs-14); }
 
 @media (max-width: 991px) {
   .fibc-footer__grid {

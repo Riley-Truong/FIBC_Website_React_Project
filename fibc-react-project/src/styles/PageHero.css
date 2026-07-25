@@ -11,7 +11,7 @@
 .page-hero--compact { padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem); }
 
 .page-hero__inner { max-width: 760px; }
-.page-hero--inverse .eyebrow { color: var(--color-rust-500); }
+.page-hero--inverse .eyebrow { color: var(--accent-light); }
 .page-hero__title {
   margin-bottom: var(--sp-4);
   color: inherit;
@@ -21,7 +21,7 @@
   color: var(--text-secondary);
   margin-bottom: 0;
 }
-.page-hero--inverse .page-hero__subtitle { color: rgba(250, 246, 240, 0.85); }
+.page-hero--inverse .page-hero__subtitle { color: rgba(238, 242, 244, 0.85); }
 
 /* Decorative subtle ornament in the corner */
 .page-hero::after {
@@ -31,9 +31,9 @@
   right: -120px;
   width: 320px; height: 320px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(184, 92, 56, 0.08), transparent 70%);
+  background: radial-gradient(circle, rgba(3, 170, 178, 0.10), transparent 70%);
   pointer-events: none;
 }
 .page-hero--inverse::after {
-  background: radial-gradient(circle, rgba(184, 92, 56, 0.20), transparent 70%);
+  background: radial-gradient(circle, rgba(58, 189, 195, 0.20), transparent 70%);
 }
