@@ -33,7 +33,7 @@
   align-items: center;
   margin-right: auto;
   padding: 0.35rem 0.7rem;
-  background: var(--color-cream);
+  background: var(--color-paper);
   border-radius: var(--radius);
   box-shadow: var(--shadow-xs);
   text-decoration: none;
@@ -79,7 +79,7 @@
   font-size: var(--fs-14);
   font-weight: var(--fw-medium);
   letter-spacing: var(--letter-wide);
-  color: rgba(250, 246, 240, 0.92); 
+  color: rgba(238, 242, 244, 0.92);
   border-radius: var(--radius);
   cursor: pointer;
   transition: color var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
@@ -128,12 +128,12 @@
   transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
 }
 .fibc-nav__dropdown-item:hover {
-  background: var(--color-cream-2);
-  color: var(--accent);
+  background: var(--bg-alt);
+  color: var(--accent-strong);
 }
 .fibc-nav__dropdown-item.is-active {
-  color: var(--accent);
-  background: var(--color-rust-100);
+  color: var(--accent-strong);
+  background: var(--accent-soft);
 }
 
 .fibc-nav__cta { padding: 0.55rem 1.4rem; font-size: var(--fs-14); }
@@ -167,7 +167,7 @@
 /* Mobile drawer */
 .fibc-nav__backdrop {
   position: fixed; inset: 0;
-  background: rgba(15, 26, 46, 0.4);
+  background: rgba(31, 36, 39, 0.5);
   z-index: calc(var(--z-overlay) - 1);
 }
 .fibc-nav__drawer {
@@ -197,7 +197,7 @@
   transition: color var(--dur) var(--ease-out);
 }
 .fibc-nav__drawer-link:hover,
-.fibc-nav__drawer-link.is-active { color: var(--accent); }
+.fibc-nav__drawer-link.is-active { color: var(--accent-strong); }
 .fibc-nav__drawer-group { border-bottom: 1px solid var(--color-line); }
 .fibc-nav__drawer-group summary {
   cursor: pointer;
@@ -219,7 +219,7 @@
   border-radius: var(--radius-sm);
   transition: color var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
 }
-.fibc-nav__drawer-sublink:hover { color: var(--accent); background: var(--color-cream-2); }
+.fibc-nav__drawer-sublink:hover { color: var(--accent-strong); background: var(--bg-alt); }
 .fibc-nav__drawer-cta {
   margin-top: var(--sp-5);
   text-align: center;

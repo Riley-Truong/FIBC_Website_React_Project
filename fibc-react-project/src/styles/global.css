@@ -17,8 +17,8 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Subtle paper texture for atmosphere — additive, no images required.
-   A faint radial gradient in the corners adds warmth without being noisy. */
+/* Subtle atmosphere — additive, no images required. A faint teal + slate
+   radial glow in opposite corners adds depth without being noisy. */
 body::before {
   content: '';
   position: fixed;
@@ -26,8 +26,8 @@ body::before {
   pointer-events: none;
   z-index: -1;
   background:
-    radial-gradient(60vmax 60vmax at 0% 0%, rgba(184, 92, 56, 0.05), transparent 60%),
-    radial-gradient(50vmax 50vmax at 100% 100%, rgba(26, 40, 66, 0.05), transparent 60%);
+    radial-gradient(60vmax 60vmax at 0% 0%, rgba(3, 170, 178, 0.06), transparent 60%),
+    radial-gradient(50vmax 50vmax at 100% 100%, rgba(69, 79, 87, 0.05), transparent 60%);
 }
 
 /* ---- Headings: serif, tight ---- */
@@ -65,7 +65,7 @@ a {
   text-decoration: none;
   transition: color var(--dur) var(--ease-out);
 }
-a:hover { color: var(--accent); }
+a:hover { color: var(--accent-strong); }
 
 /* ---- Eyebrow: small caps style label above headings ---- */
 .eyebrow {
@@ -75,10 +75,10 @@ a:hover { color: var(--accent); }
   font-weight: var(--fw-semi);
   letter-spacing: var(--letter-wider);
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-strong);
   margin-bottom: var(--sp-3);
 }
-.eyebrow--inverse { color: var(--color-rust-500); }
+.eyebrow--inverse { color: var(--accent-light); }
 
 /* ---- Pull-quote / verse style for scripture ---- */
 .scripture {
@@ -153,24 +153,26 @@ a:hover { color: var(--accent); }
 
 .btn-fibc-ghost {
   background: transparent;
-  color: var(--accent);
+  color: var(--accent-strong);
   border-color: transparent;
   padding: 0.5rem 0.75rem;
 }
 .btn-fibc-ghost:hover {
   color: var(--accent-hover);
-  background: var(--color-rust-100);
+  background: var(--accent-soft);
 }
 
-/* Inverse variant for dark backgrounds */
+/* Inverse variant for dark backgrounds — vivid logo teal with dark ink text
+   (teal #03aab2 on slate ink = 5.5:1, matches the logo's own pairing). */
 .btn-fibc--inverse {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--text-inverse);
+  color: var(--color-slate-900);
 }
 .btn-fibc--inverse:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
+  background: var(--accent-light);
+  border-color: var(--accent-light);
+  color: var(--color-slate-900);
 }
 
 /* ---- Cards ---- */
@@ -206,7 +208,7 @@ a:hover { color: var(--accent); }
 .section--inverse p {
   color: var(--text-inverse);
 }
-.section--inverse p { color: rgba(250, 246, 240, 0.85); }
+.section--inverse p { color: rgba(238, 242, 244, 0.85); }
 
 /* ---- Container variants ---- */
 .container-narrow { max-width: var(--container-narrow); margin-inline: auto; padding-inline: var(--sp-4); }
@@ -241,7 +243,7 @@ a:hover { color: var(--accent); }
 
 /* ---- Focus ring (consistent across the site) ---- */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-strong);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
