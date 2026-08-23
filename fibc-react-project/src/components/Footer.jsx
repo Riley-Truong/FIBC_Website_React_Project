@@ -46,7 +46,6 @@ function Footer() {
             <h4 className='fibc-footer__heading'>Visit</h4>
             <ul className='fibc-footer__list'>
               <li><Link to="/visit">Plan Your Visit</Link></li>
-              <li><Link to="/services">Service Times</Link></li>
               <li><Link to="/salvation">Salvation</Link></li>
               <li><Link to="/next-steps">Next Steps</Link></li>
             </ul>
