@@ -31,7 +31,6 @@ function HomePage() {
               </p>
               <div className="home-hero__ctas">
                 <Link to="/visit" className="btn-fibc">Plan your visit</Link>
-                <Link to="/services" className="btn-fibc-outline">Service times</Link>
               </div>
             </motion.div>
             <motion.aside className="home-hero__card" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }} aria-label="This Sunday at FIBC"

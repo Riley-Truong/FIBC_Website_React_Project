@@ -1,266 +1,224 @@
-import React, {useState, useEffect} from 'react';
+import { motion } from 'framer-motion';
+import SEO from '../components/shared/SEO.jsx';
+import PageHero from '../components/shared/PageHero.jsx';
+import SectionHeading from '../components/shared/SectionHeading.jsx';
+import { useYouTubeVideos, CHANNEL_URL } from '../hooks/youtube_videos_hook.js';
+import '../styles/SermonsPage.css';
 
-function SermonsPage() {
-  const [videos, setVideos] = useState([]);
-  const [liveStream, setLiveStream] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [selectedVideo, setSelectedVideo] = useState(null);
+const EASE = [0.16, 1, 0.3, 1];
 
-  const YOUTUBE_CHANNEL_ID = 'UCA2XmzXvAr0pLhzGSspAIOQ'
-  const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
-  const MAX_RESULTS = 6;
-  
+// Shared "fade + rise" entrance for cards as they scroll into view.
+const fadeUp = {
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+};
 
-  useEffect(() => {
-    fetchVideos();
-  }, []);
+/** How many past messages to list beneath the player. */
+const ARCHIVE_COUNT = 6;
 
-  const fetchVideos = async () => {
-    try{
-      setLoading(true);
-      setError(null);
-      await Promise.all([
-        fetchRecentVideos(),
-        fetchLiveStream()
-      ]);
-    } catch(err){
-      console.error('Failed to fetch videos: ', err);
-      setError('Unable to load sermons at this time. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
-  };
+const watchUrl = (id) => `https://www.youtube.com/watch?v=${id}`;
+// nocookie spares visitors YouTube's tracking cookies until they hit play.
+const embedUrl = (id) => `https://www.youtube-nocookie.com/embed/${id}?rel=0`;
 
-  const fetchRecentVideos = async () => {
-    const url = `https://www.googleapis.com/youtube/v3/search?` +
-      `key=${API_KEY}` +
-      `&channelId=${YOUTUBE_CHANNEL_ID}` +
-      `&part=snippet,id` +
-      `&order=date` +
-      `&maxResults=${MAX_RESULTS}` +
-      `&type=video`;
-      const response = await fetch(url);
-    if(!response.ok){
-      throw new Error(`Failed to fetch recent videos: ${response.statusText}`);
-    }
-    const data = await response.json();
+function formatDate(iso) {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString(undefined, {
+    year: 'numeric', month: 'long', day: 'numeric',
+  });
+}
 
-    if(data.items){
-      setVideos(data.items);
-    }
-  };
+/** 4530 → "1:15:30", 2712 → "45:12". Empty for live streams, which report 0. */
+function formatDuration(totalSeconds) {
+  if (!totalSeconds) return '';
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+  const pad = (n) => String(n).padStart(2, '0');
+  return h ? `${h}:${pad(m)}:${pad(s)}` : `${m}:${pad(s)}`;
+}
 
-  const openVideoModal = (video) => {
-    setSelectedVideo(video);
-  };
-
-  const closeVideoModal = () => {
-    setSelectedVideo(null);
-  };
-
-  const fetchLiveStream = async () => {
-    const url = `https://www.googleapis.com/youtube/v3/search?` +
-      `key=${API_KEY}` +
-      `&channelId=${YOUTUBE_CHANNEL_ID}` +
-      `&part=snippet,id` +
-      `&eventType=live` +
-      `&type=video` +
-      `&maxResults=1`;    
-      const response = await fetch(url);
-    if(!response.ok){
-      throw new Error(`Failed to fetch live stream: ${response.statusText}`);
-    }
-    const data = await response.json();
-    if(data.items && data.items.length > 0){
-      setLiveStream(data.items[0]);
-    }else{
-      setLiveStream(null);
-    }
-  };
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-  };
-
-  if (loading) {
-    return (
-      <div className="container my-5">
-        <div className="text-center py-5">
-          <div className="spinner-border text-primary" role="status" style={{ width: '3rem', height: '3rem' }}>
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <p className="mt-3 text-muted">Loading video...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="container my-5">
-        <div className="alert alert-danger" role="alert">
-          <h4 className="alert-heading">
-            <i className="bi bi-exclamation-triangle-fill me-2"></i>
-            Error Loading Videos
-          </h4>
-          <p>{error}</p>
-          <hr />
-          <button className="btn btn-outline-danger" onClick={fetchVideos}>
-            <i className="bi bi-arrow-clockwise me-2"></i>
-            Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
-
+function YouTubeIcon() {
   return (
-    <div className="container my-5">
-      <h1 className="mb-4">Recent Sermons</h1>
-      <p className="lead mb-5">Watch our latest messages.</p>
-      {liveStream && (
-        <div className="mb-5">
-          <div className="card border-danger">
-            <div className="card-header bg-danger text-white">
-              <div className="d-flex align-items-center">
-                <span className="badge bg-white text-danger me-2 pulse-animation">
-                  <i className="bi bi-broadcast"></i> LIVE NOW
-                </span>
-                <h4 className="mb-0">{liveStream.snippet.title}</h4>
-              </div>
-            </div>
-            <div className="card-body p-0">
-              <div className="ratio ratio-16x9">
-                <iframe
-                  src={`https://www.youtube.com/embed/${liveStream.id.videoId}?autoplay=1`}
-                  title={liveStream.snippet.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-            <div className="card-footer">
-              <p className="mb-0 text-muted">
-                <i className="bi bi-clock"></i> Started: {formatDate(liveStream.snippet.publishedAt)}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-      {videos.length === 0 ? (
-        <div className="alert alert-info" role="alert">
-          <i className="bi bi-info-circle me-2"></i>
-          No sermons available at this time. Check back soon!
-        </div>
-      ) : (
-        <div className="row g-4">
-          {videos.slice(6,limit).map((video) => (
-            <div key={video.id.videoId} className="col-md-6 col-lg-4">
-              <div className="card h-100 shadow-sm video-card">
-                <div className="position-relative video-thumbnail" onClick={() => openVideoModal(video)} style={{ cursor: 'pointer' }}>
-                  <img
-                    src={video.snippet.thumbnails.medium.url}
-                    className="card-img-top"
-                    alt={video.snippet.title}
-                    style={{ objectFit: 'cover', height: '200px' }}
-                  />
-                  <div className="video-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                    <i className="bi bi-play-circle-fill text-white display-1"></i>
-                  </div>
-                </div>
+    <svg className="sermons-yt-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z" />
+    </svg>
+  );
+}
 
-                <div className="card-body d-flex flex-column">
-                  <p className="card-title">{video.snippet.title}</p>
-                  <p className="card-text text-muted small flex-grow-1">
-                    {video.snippet.description.substring(0, 100)}
-                    {video.snippet.description.length > 100 ? '...' : ''}
-                  </p>
-                  <p className="card-text mb-3">
-                    <small className="text-muted">
-                      <i className="bi"></i> {formatDate(video.snippet.publishedAt)}
-                    </small>
-                  </p>
+/** Link out to the church's channel. Used in the hero and in the empty states. */
+function ChannelButton({ variant = 'btn-fibc', children = 'Visit our YouTube channel' }) {
+  return (
+    <a
+      className={`${variant} sermons-channel-btn`}
+      href={CHANNEL_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <YouTubeIcon />
+      {children}
+    </a>
+  );
+}
 
-                  <div className="d-flex gap-2 mt-auto">
-                    <button
-                      className="btn btn-primary btn-sm flex-grow-1"
-                      onClick={() => openVideoModal(video)}
-                    >
-                      <i className="bi bi-play-fill"></i> Watch Here
-                    </button>
-                  </div>                
-                </div>
-              </div>
-              {selectedVideo && (
-                <div 
-                  className="modal fade show video-modal-wide"
-                  style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}
-                  onClick={closeVideoModal}
-                >
-                  <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5>{selectedVideo.snippet.title}</h5>
-                        <button className="btn-close" onClick={closeVideoModal}></button>
-                      </div>
-                      
-                      <div className="modal-body p-0">
-                        <div className="video-container-constrained">
-                          <iframe
-                            src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}`}
-                            allowFullScreen
-                            style={{
-                              position: 'absolute',
-                              top: 0,
-                              left: 0,
-                              width: '100%',
-                              height: '82%',
-                              border: 'none',
-                            }}
-                          ></iframe>
-                        </div>
-                      </div>
-                      
-                      <div className="modal-footer">
-                        <small className="text-muted me-auto">
-                          <i className="bi bi-calendar3"></i> {formatDate(selectedVideo.snippet.publishedAt)}
-                        </small>
-                        <a
-                          href={`https://www.youtube.com/watch?v=${selectedVideo.id.videoId}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-sm btn-outline-primary"
-                        >
-                          Open in YouTube
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}           
-            </div>
-          ))}
-        </div>
-      )}
-      <div className="text-center mt-5">
-        <h4>Sermon Archive</h4>
+/** The big player at the top: the live broadcast when we're on the air,
+ *  otherwise the most recent message. */
+function FeaturedPlayer({ video, isLive }) {
+  return (
+    <motion.div
+      className="sermon-feature"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: EASE }}
+    >
+      <div className="sermon-feature__frame">
+        <iframe
+          src={embedUrl(video.id)}
+          title={video.title || (isLive ? 'Live service' : 'Latest sermon')}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+
+      <div className="sermon-feature__meta">
+        <span className={`sermon-feature__status${isLive ? ' sermon-feature__status--live' : ''}`}>
+          {isLive ? <><span className="sermon-feature__dot" aria-hidden="true" />Live now</> : 'Latest message'}
+        </span>
+
+        <h2 className="sermon-feature__title">{video.title}</h2>
+
+        {!isLive && video.publishedAt && (
+          <p className="sermon-feature__date">{formatDate(video.publishedAt)}</p>
+        )}
+
         <a
-          href={`https://www.youtube.com/channel/${YOUTUBE_CHANNEL_ID}/videos`}
+          className="btn-fibc-outline sermons-channel-btn"
+          href={watchUrl(video.id)}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn btn-primary btn-lg"
         >
-          <i className="bi bi-youtube me-2"></i>
-          View Full Archive on YouTube
+          <YouTubeIcon />
+          Watch on YouTube
         </a>
       </div>
+    </motion.div>
+  );
+}
+
+function SermonCard({ video, index }) {
+  const thumb = video.thumbnail || `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+  const duration = formatDuration(video.durationSeconds);
+  const date = formatDate(video.publishedAt);
+
+  return (
+    <motion.a
+      href={watchUrl(video.id)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="sermon-card"
+      {...fadeUp}
+      transition={{ duration: 0.5, ease: EASE, delay: (index % 3) * 0.05 }}
+    >
+      <div className="sermon-card__thumb">
+        <img src={thumb} alt="" loading="lazy" />
+        {duration && <span className="sermon-card__duration">{duration}</span>}
+        <span className="sermon-card__play" aria-hidden="true">
+          <YouTubeIcon />
+        </span>
+      </div>
+
+      <div className="sermon-card__body">
+        {date && <span className="sermon-card__date">{date}</span>}
+        <h3 className="sermon-card__title">{video.title}</h3>
+      </div>
+    </motion.a>
+  );
+}
+
+/** Shared shell for the loading / error / unconfigured / empty states. */
+function SermonsNotice({ eyebrow, title, children }) {
+  return (
+    <div className="sermons-notice">
+      <span className="eyebrow">{eyebrow}</span>
+      <h2 className="sermons-notice__title">{title}</h2>
+      {children}
     </div>
+  );
+}
+
+function SermonsPage() {
+  const { loading, error, configured, live, featured, archive } =
+    useYouTubeVideos({ archiveCount: ARCHIVE_COUNT });
+
+  const isLive = Boolean(live);
+
+  return (
+    <>
+      <SEO
+        title="Sermons"
+        description="Watch live services and recent sermons from Faith Independent Baptist Church. Bible-centered preaching from God's Word."
+      />
+
+      <PageHero
+        title="Sermons"
+      />
+
+      <section className="section">
+        <div className="container-base">
+          {!configured && (
+            <SermonsNotice eyebrow="Coming soon" title="Sermon archive is being prepared.">
+              <p>
+                Recent messages will appear here shortly. In the meantime, every service
+                is posted to our YouTube channel.
+              </p>
+              <ChannelButton />
+            </SermonsNotice>
+          )}
+
+          {configured && loading && (
+            <SermonsNotice eyebrow="Loading" title="Pulling the latest messages…" />
+          )}
+
+          {configured && !loading && error && (
+            <SermonsNotice eyebrow="Trouble loading" title="We couldn't load sermons right now.">
+              <p>Please try again in a moment, or watch directly on our channel.</p>
+              <ChannelButton />
+            </SermonsNotice>
+          )}
+
+          {configured && !loading && !error && !featured && (
+            <SermonsNotice eyebrow="No sermons yet" title="Check back soon.">
+              <p>Messages will be posted here as they're recorded.</p>
+              <ChannelButton />
+            </SermonsNotice>
+          )}
+
+          {configured && !loading && !error && featured && (
+            <FeaturedPlayer video={featured} isLive={isLive} />
+          )}
+        </div>
+      </section>
+
+      {configured && !loading && !error && archive.length > 0 && (
+        <section className="section section--alt">
+          <div className="container-base">
+            <SectionHeading
+              title="Recent messages"
+            />
+
+            <div className="sermons-grid">
+              {archive.map((video, i) => (
+                <SermonCard key={video.id} video={video} index={i} />
+              ))}
+            </div>
+
+            <div className="sermons-more">
+              <ChannelButton>Browse all sermons</ChannelButton>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 }
 
