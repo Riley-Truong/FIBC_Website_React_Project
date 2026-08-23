@@ -16,7 +16,7 @@ function StaffPage() {
                         {staff.map(person => (
                             <motion.article key={person.id} className="staff-card" variants={{hidden: {opacity: 0, y: 16}, show: {opacity: 1, y: 1, transition: {duration: 0.6, ease: [0.16,1,0.3,1]}},}}>
                                 <div className="staff-card__avatar" aria-hidden="true">
-                                    {person.image ? <img src={person.image} alt={person.name} /> : <span>{person.initials}</span>}
+                                    {person.image ? <img src={person.image} alt={person.name} loading="lazy"/> : <span>{person.initials}</span>}
                                 </div>
                                 <div className="staff-card__body">
                                     <p className="eyebrow">{person.role}</p>
