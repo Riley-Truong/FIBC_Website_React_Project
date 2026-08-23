@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import FABGiving from './components/FABGiving';
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import HomePage from './pages/HomePage';
@@ -10,7 +11,6 @@ import MinistriesPage from './pages/MinistriesPage';
 import EventsPage from './pages/EventsPage';
 import SermonsPage from './pages/SermonsPage';
 import ContactPage from './pages/ContactPage';
-import GivingPage from './pages/GivingPage';
 import StaffPage from './pages/StaffPage';
 import BeliefsPage from './pages/BeliefsPage';
 import FAQPage from './pages/FAQPage';
@@ -39,11 +39,11 @@ function App() {
           <Route path="/sermons" element={<SermonsPage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/giving" element={<GivingPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <Footer />
+      <FABGiving />
     </ErrorBoundary>
   );
 }
