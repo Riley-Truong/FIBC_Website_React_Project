@@ -1,4 +1,29 @@
+/* ========================================================================
+   FLOATING GIVING BUTTON
+   ------------------------------------------------------------------------
+   A persistent call-to-action pinned to the bottom-right of every page, so
+   giving stays one tap away on long pages after the header has scrolled out
+   of view.
+
+   Shape: an extended pill rather than a plain circle, since the glyph sits
+   beside a "Give" label. Radius and type match .btn-fibc so it reads as the
+   same family as the nav CTA.
+
+   Colour: vivid logo teal (--accent) carrying a slate-ink glyph and label —
+   the pairing the logo itself uses, and the one .btn-fibc--inverse already
+   relies on. Dark ink on #03aab2 measures ~5.4:1; near-white on that same
+   teal lands at ~2.6:1, which fails AA for text this size.
+
+   Specificity note: the markup is a MUI <Fab>, and MUI injects its own
+   `.MuiFab-root` / `.MuiFab-extended` rules into <head> at runtime via
+   Emotion. Those land *after* this stylesheet, so a single class here
+   (0,1,0) would tie on specificity and lose on source order. Doubling the
+   class up (.fibc-fab.fibc-fab = 0,2,0) outranks MUI's defaults cleanly,
+   without scattering !important through the file.
+   ======================================================================== */
+
 .fibc-fab.fibc-fab {
+  /* Pin to the corner, clearing the iOS home indicator on newer phones. */
   position: fixed;
   right: max(var(--sp-5), env(safe-area-inset-right));
   bottom: max(var(--sp-5), env(safe-area-inset-bottom));
@@ -7,16 +32,24 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  padding: 0;
+  gap: var(--sp-2);
+  width: auto;
+  height: 64px;
+  padding: 0 1.75rem;
 
   background: var(--accent);
+  color: var(--color-slate-900);
   border: 1.5px solid var(--accent);
-  border-radius: 50%;
+  border-radius: var(--radius-pill);
   box-shadow: var(--shadow-md);
 
+  font-family: var(--font-body);
+  font-size: var(--fs-18);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--letter-wide);
+  text-transform: none;        /* MUI uppercases Fab labels by default */
   text-decoration: none;
+  white-space: nowrap;
 
   transition:
     background-color var(--dur) var(--ease-out),
@@ -25,23 +58,31 @@
     box-shadow var(--dur) var(--ease-out);
 }
 
+/* Deepen one step on hover rather than lightening: this floats over pale
+   page backgrounds, and teal-600 keeps the slate ink legible (~4.4:1). */
 .fibc-fab.fibc-fab:hover,
 .fibc-fab.fibc-fab:focus-visible {
   background: var(--color-teal-600);
   border-color: var(--color-teal-600);
+  color: var(--color-slate-900);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
 
+/* Nudged left of centre so the glyph optically balances the label. */
 .fibc-fab__icon.fibc-fab__icon {
-  color: var(--color-slate-900);
   font-size: var(--fs-24);
+  margin-left: -0.15rem;
 }
 
+/* Slightly shorter on small screens so the pill doesn't dominate. */
 @media (max-width: 575.98px) {
   .fibc-fab.fibc-fab {
     right: max(var(--sp-4), env(safe-area-inset-right));
     bottom: max(var(--sp-4), env(safe-area-inset-bottom));
+    height: 56px;
+    padding: 0 1.4rem;
+    font-size: var(--fs-16);
   }
 }
 

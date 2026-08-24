@@ -57,6 +57,7 @@ function Footer() {
               <li><Link to="/ministries">Ministries</Link></li>
               <li><Link to="/sermons">Sermons</Link></li>
               <li><Link to="/events">Events</Link></li>
+              <li><Link to="#">Give</Link></li>
               <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
