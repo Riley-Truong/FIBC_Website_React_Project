@@ -1,19 +1,19 @@
 export const specialEvents = [
     {
-        title: "Men's Breakfast",
-        body: 'Hot food, brief teaching, real conversation. A great way for the men of FIBC to sharpen one another. Watch the bulletin for the next date.',
+        title: "Grandparents’ Sunday",
+        body: 'September 13',
     },
     {
-        title: "Ladies' Tea & Fellowship",
-        body: 'An afternoon of refreshment for the women of our church and their guests. Bring a friend.',
+        title: "Ladies Conference (NC)",
+        body: 'In North Carolina on October 9-10.',
     },
     {
-        title: 'Vacation Bible School',
-        body: 'A week of high-energy Bible learning for kids each summer. Volunteers welcome — registration opens in late spring.',
+        title: 'Friends & Family Day',
+        body: 'October 25',
     },
     {
-        title: 'Missions Conference',
-        body: 'A weekend dedicated to celebrating and supporting the worldwide work of the Gospel. Hear directly from missionaries we partner with.',
+        title: 'Pie and Praise',
+        body: 'November 24',
     },
 ];
 
