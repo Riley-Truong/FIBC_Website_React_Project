@@ -27,8 +27,8 @@ function Footer() {
               <strong>Faith Independent Baptist Church</strong><br />
               1099 Hwy 81 West<br />
               McDonough, GA 30253<br />
-              <a href="tel:+17709579889">(770) 957-9889</a><br />
-              <a href="mailto:office@fibcmcdonough.org">office@fibcmcdonough.org</a>
+              <a href="tel:+14705070502">(470) 507-0502</a><br />
+              <a href="mailto:faithbaptistmcdonough@gmail.com">faithbaptistmcdonough@gmail.com</a>
             </address>
           </div>
 
