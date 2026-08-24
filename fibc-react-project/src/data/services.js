@@ -2,9 +2,9 @@ export const services = [
     {
         day: 'Sunday',
         sessions: [
-            { name: 'Sunday School', time: '10:00 AM'},
-            { name: 'Morning Worship', time: '11:00 AM'},
-            { name: 'Evening Worship', time: '5:00 PM'},
+            { name: 'Sunday School', time: '9:30 AM'},
+            { name: 'Morning Service', time: '10:30 AM'},
+            { name: 'Evening Service', time: '5:00 PM'},
         ],
     },
     {

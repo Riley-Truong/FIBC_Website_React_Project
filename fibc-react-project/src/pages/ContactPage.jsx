@@ -122,7 +122,7 @@ function ContactPage() {
                 <p>
                   Sundays<br />
                   9:30 AM Sunday School<br />
-                  11:00 AM Morning Worship<br />
+                  10:30 AM Morning Service<br />
                   5:00 PM Evening Service
                 </p>
                 <p>

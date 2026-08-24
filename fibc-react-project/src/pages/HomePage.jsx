@@ -36,10 +36,10 @@ function HomePage() {
             <motion.aside className="home-hero__card" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }} aria-label="This Sunday at FIBC"
             >
               <span className="eyebrow">This Sunday</span>
-              <h2 className="home-hero__card-title">Join us at 11 AM</h2>
+              <h2 className="home-hero__card-title">Join us at</h2>
               <ul className="home-hero__card-list">
-                <li><strong>10:00 AM</strong> Sunday School</li>
-                <li><strong>11:00 AM</strong> Morning Worship</li>
+                <li><strong>9:30 AM</strong> Sunday School</li>
+                <li><strong>10:30 AM</strong> Morning Service</li>
                 <li><strong>5:00 PM</strong>  Evening Service</li>
               </ul>
               <p className="home-hero__card-meta">
