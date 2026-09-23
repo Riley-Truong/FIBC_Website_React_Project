@@ -27,7 +27,7 @@ const NAV_GROUPS = [
 const NAV_LINKS = [
     { to: '/ministries', label: 'Ministries' },
     { to: '/sermons', label: 'Sermons' },
-    { to: '#', label: 'Give'},
+    { to: 'https://faithbaptistmcdonoughchurch.netlify.app/', label: 'Give'},
     { to: '/events', label: 'Events' },
     { to: '/contact', label: 'Contact' },
 ];
