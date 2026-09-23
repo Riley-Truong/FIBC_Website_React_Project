@@ -2,7 +2,7 @@
 
 A production-ready, fully responsive church website built as a single-page application with **React 18**, **Vite**, and **React Router**, deployed on **Netlify**.
 
-**Live site:** [https://test-fibc-website.netlify.app/](https://faithbaptistmcdonoughchurch.netlify.app/)
+**Live site:** https://faithbaptistmcdonoughchurch.netlify.app/
 
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
