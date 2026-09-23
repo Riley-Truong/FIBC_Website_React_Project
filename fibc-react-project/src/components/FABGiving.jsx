@@ -12,7 +12,7 @@ function FABGiving() {
     return (
         <Fab
             component="a"
-            href="#"
+            href="https://app.easytithe.com/app/giving/fait1099137"
             target="_blank"
             rel="noopener noreferrer"
             className="fibc-fab"
